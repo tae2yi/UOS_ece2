@@ -1,0 +1,5 @@
+{
+  "sources": ["src/sub_4bit.v"],
+  "testbench": "sim/tb_sub_4bit.sv",
+  "simulation_top": "tb_sub_4bit"
+}

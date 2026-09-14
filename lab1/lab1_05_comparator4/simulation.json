@@ -1,0 +1,5 @@
+{
+  "sources": ["src/compare_4.v"],
+  "testbench": "sim/tb_compare_4.sv",
+  "simulation_top": "tb_compare_4"
+}

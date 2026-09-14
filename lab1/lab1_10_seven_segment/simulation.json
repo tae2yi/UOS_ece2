@@ -1,0 +1,5 @@
+{
+  "sources": ["src/seg_decoder.v"],
+  "testbench": "sim/tb_seg_decoder.sv",
+  "simulation_top": "tb_seg_decoder"
+}

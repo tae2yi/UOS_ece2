@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB1_PASS sub_4bit cases=256
+/Users/ehoi/Library/Vivado/Workspace/ece2/lab1/lab1_04_subtractor4/sim/tb_sub_4bit.sv:19: $finish called at 2560000 (1ps)

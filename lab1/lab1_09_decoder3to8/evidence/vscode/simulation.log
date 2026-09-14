@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB1_PASS decoder3x8 cases=8
+/Users/ehoi/Library/Vivado/Workspace/ece2/lab1/lab1_09_decoder3to8/sim/tb_decoder3x8.sv:19: $finish called at 80000 (1ps)

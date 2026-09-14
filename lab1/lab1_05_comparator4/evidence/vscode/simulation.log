@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB1_PASS compare_4 cases=256
+/Users/ehoi/Library/Vivado/Workspace/ece2/lab1/lab1_05_comparator4/sim/tb_compare_4.sv:19: $finish called at 2560000 (1ps)

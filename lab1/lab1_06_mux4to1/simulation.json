@@ -1,0 +1,5 @@
+{
+  "sources": ["src/mux_4x1.v"],
+  "testbench": "sim/tb_mux_4x1.sv",
+  "simulation_top": "tb_mux_4x1"
+}

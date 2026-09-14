@@ -1,0 +1,5 @@
+{
+  "sources": ["src/demux_1x8.v"],
+  "testbench": "sim/tb_demux_1x8.sv",
+  "simulation_top": "tb_demux_1x8"
+}

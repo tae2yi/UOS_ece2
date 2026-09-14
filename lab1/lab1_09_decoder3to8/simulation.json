@@ -1,0 +1,5 @@
+{
+  "sources": ["src/decoder3x8.v"],
+  "testbench": "sim/tb_decoder3x8.sv",
+  "simulation_top": "tb_decoder3x8"
+}
