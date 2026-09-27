@@ -1,0 +1,93 @@
+$date
+	Mon Sep 21 09:03:15 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_register_pair $end
+$var wire 4 ! value [3:0] $end
+$var wire 4 " stored [3:0] $end
+$var reg 1 # clk $end
+$var reg 4 $ data_in [3:0] $end
+$var reg 1 % load $end
+$var reg 1 & rst $end
+$var reg 1 ' transfer $end
+$var integer 32 ( checks [31:0] $end
+$scope module dut $end
+$var wire 1 # clk $end
+$var wire 4 ) data_in [3:0] $end
+$var wire 1 % load $end
+$var wire 1 & rst $end
+$var wire 1 ' transfer $end
+$var reg 4 * stored [3:0] $end
+$var reg 4 + value [3:0] $end
+$upscope $end
+$scope task check $end
+$var reg 1 , condition $end
+$var reg 800 - description [799:0] $end
+$upscope $end
+$scope task finish $end
+$upscope $end
+$scope task step $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx -
+x,
+bx +
+bx *
+b0 )
+b0 (
+0'
+1&
+0%
+b0 $
+0#
+bx "
+bx !
+$end
+#5000
+b0 !
+b0 +
+b0 "
+b0 *
+1#
+#6000
+1%
+b1010 $
+b1010 )
+0&
+b1 (
+b111001001100101011100110110010101110100 -
+1,
+#10000
+0#
+#15000
+b1010 "
+b1010 *
+1#
+#16000
+1'
+b11 $
+b11 )
+0%
+b10 (
+b1101100011011110110000101100100001000000110010001101111011001010111001100100000011011100110111101110100001000000111010001110010011000010110111001110011011001100110010101110010 -
+#20000
+0#
+#25000
+b11 !
+b11 +
+1#
+#26000
+b11 (
+b11101000111001001100001011011100111001101100110011001010111001000100000011100110111010001101111011100100110010101100100001000000110111001101111011101000010000001101100011010010111011001100101001000000110100101101110011100000111010101110100 -
+0,

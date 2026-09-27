@@ -1,0 +1,4 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_FAIL                                                                              reset blanks digit zero time=6000
+FATAL: /Users/ehoi/Library/Vivado/Workspace/ece2/lab2/lab2_08_segment_scan/sim/tb_segment_scan8.sv:12: check failed
+       Time: 6000  Scope: tb_segment_scan8.check

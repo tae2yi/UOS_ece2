@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_PASS mealy_toggle checks=11
+/Users/ehoi/Library/Vivado/Workspace/ece2/lab2/lab2_07_mealy/sim/tb_mealy_toggle.sv:19: $finish called at 67000 (1ps)

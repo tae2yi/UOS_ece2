@@ -1,0 +1,4 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_FAIL                                                                      S0 input changes between clocks time=7000
+FATAL: /Users/ehoi/Library/Vivado/Workspace/ece2/lab2/lab2_07_mealy/sim/tb_mealy_toggle.sv:12: check failed
+       Time: 7000  Scope: tb_mealy_toggle.check

@@ -1,0 +1,4 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_FAIL                                                                                             S1 to S2 time=46000
+FATAL: /Users/ehoi/Library/Vivado/Workspace/ece2/lab2/lab2_06_moore/sim/tb_moore_cycle.sv:12: check failed
+       Time: 46000  Scope: tb_moore_cycle.check

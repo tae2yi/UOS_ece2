@@ -1,0 +1,9 @@
+{
+  "sources": [
+    "src/piso4.v",
+    "src/input_frontend.v",
+    "src/lab2_piso.v"
+  ],
+  "testbench": "sim/tb_piso4.sv",
+  "simulation_top": "tb_piso4"
+}

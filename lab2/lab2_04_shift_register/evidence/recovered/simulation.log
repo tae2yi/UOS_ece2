@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_PASS shift_register4 checks=8
+/Users/ehoi/Library/Vivado/Workspace/ece2/lab2/lab2_04_shift_register/sim/tb_shift_register4.sv:17: $finish called at 106000 (1ps)

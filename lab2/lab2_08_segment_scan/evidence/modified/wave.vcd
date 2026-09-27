@@ -1,0 +1,81 @@
+$date
+	Mon Sep 21 00:34:08 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_segment_scan8 $end
+$var wire 8 ! select [7:0] $end
+$var wire 8 " segments [7:0] $end
+$var wire 3 # index [2:0] $end
+$var reg 1 $ clk $end
+$var reg 32 % digits [31:0] $end
+$var reg 1 & enable $end
+$var reg 1 ' rst $end
+$var integer 32 ( bank [31:0] $end
+$var integer 32 ) checks [31:0] $end
+$var integer 32 * lap [31:0] $end
+$var integer 32 + position [31:0] $end
+$scope module dut $end
+$var wire 1 $ clk $end
+$var wire 32 , digits [31:0] $end
+$var wire 1 & enable $end
+$var wire 1 ' rst $end
+$var reg 1 - blank $end
+$var reg 3 . index [2:0] $end
+$var reg 4 / nibble [3:0] $end
+$var reg 8 0 segments [7:0] $end
+$var reg 8 1 select [7:0] $end
+$upscope $end
+$scope task check $end
+$var reg 1 2 condition $end
+$var reg 800 3 description [799:0] $end
+$upscope $end
+$scope task finish $end
+$upscope $end
+$scope task step $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 3
+x2
+bx 1
+bx 0
+bx /
+bx .
+x-
+b1110110010101000011001000010000 ,
+bx +
+bx *
+b0 )
+bx (
+1'
+0&
+b1110110010101000011001000010000 %
+0$
+bx #
+bx "
+bx !
+$end
+#5000
+b11111100 "
+b11111100 0
+b1 !
+b1 1
+b0 /
+1-
+b0 #
+b0 .
+1$
+#6000
+b1 )
+b111001001100101011100110110010101110100001000000110001001101100011000010110111001101011011100110010000001100100011010010110011101101001011101000010000001111010011001010111001001101111 3
+02

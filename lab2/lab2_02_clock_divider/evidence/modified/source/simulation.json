@@ -1,0 +1,9 @@
+{
+  "sources": [
+    "src/clock_divider.v",
+    "src/input_frontend.v",
+    "src/lab2_clock_divider.v"
+  ],
+  "testbench": "sim/tb_clock_divider.sv",
+  "simulation_top": "tb_clock_divider"
+}

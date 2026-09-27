@@ -1,0 +1,9 @@
+{
+  "sources": [
+    "src/mealy_toggle.v",
+    "src/input_frontend.v",
+    "src/lab2_mealy.v"
+  ],
+  "testbench": "sim/tb_mealy_toggle.sv",
+  "simulation_top": "tb_mealy_toggle"
+}

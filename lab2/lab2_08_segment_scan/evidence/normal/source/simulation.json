@@ -1,0 +1,9 @@
+{
+  "sources": [
+    "src/segment_scan8.v",
+    "src/input_frontend.v",
+    "src/lab2_segment_scan.v"
+  ],
+  "testbench": "sim/tb_segment_scan8.sv",
+  "simulation_top": "tb_segment_scan8"
+}

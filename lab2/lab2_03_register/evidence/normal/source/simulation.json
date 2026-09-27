@@ -1,0 +1,9 @@
+{
+  "sources": [
+    "src/register_pair.v",
+    "src/input_frontend.v",
+    "src/lab2_register.v"
+  ],
+  "testbench": "sim/tb_register_pair.sv",
+  "simulation_top": "tb_register_pair"
+}
