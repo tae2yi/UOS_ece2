@@ -1,0 +1,103 @@
+{
+  "folders": [
+    {
+      "name": "PROJECT",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.fontSize": 18,
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "off",
+    "files.exclude": {
+      "**/__pycache__": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "hudson-river-trading.vscode-slang",
+      "lramseyer.vaporview",
+      "tomoki1207.pdf"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "01 Check tools",
+        "type": "process",
+        "command": "python3",
+        "windows": {
+          "command": "python"
+        },
+        "args": [
+          "tools/lab1.py",
+          "check"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:PROJECT}"
+        },
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "clear": true
+        }
+      },
+      {
+        "label": "02 Simulate",
+        "type": "process",
+        "command": "python3",
+        "windows": {
+          "command": "python"
+        },
+        "args": [
+          "tools/lab1.py",
+          "simulate"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:PROJECT}"
+        },
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "clear": true
+        }
+      },
+      {
+        "label": "03 Open waveform",
+        "type": "process",
+        "command": "python3",
+        "windows": {
+          "command": "python"
+        },
+        "args": [
+          "tools/lab1.py",
+          "wave"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder:PROJECT}"
+        },
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "clear": true
+        }
+      }
+    ]
+  }
+}

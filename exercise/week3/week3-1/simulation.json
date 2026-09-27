@@ -1,0 +1,12 @@
+{
+  "sources": [
+    "src/key_frontend.v",
+    "src/clk_out_oddr.v",
+    "src/uart_tx.v",
+    "src/id_buffer.v",
+    "src/seg7_scan8.v",
+    "src/week3_1_top.v"
+  ],
+  "testbench": "sim/tb_week3_1_top.sv",
+  "simulation_top": "tb_week3_1_top"
+}
