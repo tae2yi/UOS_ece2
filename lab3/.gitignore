@@ -1,0 +1,4 @@
+# LibreOffice/Word lock files and Python caches
+.~lock.*#
+~$*
+__pycache__/

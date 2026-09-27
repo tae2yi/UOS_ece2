@@ -22,6 +22,8 @@ FONT_CODE = 'Consolas'
 NAVY = '1F4E78'
 PALE = 'EAF2F8'
 GRAY = 'D9D9D9'
+REPO = 'https://github.com/tae2yi/UOS_ece2'
+CODE_COMMIT = '090e0da'   # 보고서의 GitHub 주소가 가리키는 커밋 (LAB3 소스가 들어간 커밋)
 COL_W = 3.22          # 2단 본문 한 단의 사용 폭(inch)
 FIG_W = 3.18
 
@@ -39,7 +41,7 @@ NORMAL_SHOTS = {
 LABS = [
 # --------------------------------------------------------------------- 01
 {
- 'id': '01', 'key': 'led_pwm', 'name': 'PWM LED 밝기', 'top': 'lab3_led_pwm', 'tb': 'tb_led_pwm',
+ 'id': '01', 'code_src': ('src/pwm_channel.v', 15, 33), 'key': 'led_pwm', 'name': 'PWM LED 밝기', 'top': 'lab3_led_pwm', 'tb': 'tb_led_pwm',
  'goal': '버튼을 한 번 누를 때마다 PWM duty를 10 %씩 올리고, 100 % 다음에는 0 %로 돌아가게 한다. '
          '8개 LED에 같은 PWM 신호를 내보내므로 모든 LED의 밝기가 함께 바뀐다.',
  'flow': '버튼(N8)은 FPGA 클록과 무관한 시점에 바뀌므로 button_onepulse가 두 플립플롭으로 먼저 동기화한다. '
@@ -125,7 +127,7 @@ end""",
 },
 # --------------------------------------------------------------------- 02
 {
- 'id': '02', 'key': 'rgb_pwm', 'name': 'RGB LED PWM', 'top': 'lab3_rgb_pwm', 'tb': 'tb_rgb_pwm',
+ 'id': '02', 'code_src': ('src/lab3_rgb_pwm.v', 28, 36), 'key': 'rgb_pwm', 'name': 'RGB LED PWM', 'top': 'lab3_rgb_pwm', 'tb': 'tb_rgb_pwm',
  'goal': 'R·G·B 버튼 세 개로 세 색의 duty를 각각 0‥100 %(10 % 단위)로 바꾸고, 네 개의 RGB LED에 같은 색을 낸다. '
          '세 채널은 주기가 같아서 혼합색이 duty 비율로 정해진다.',
  'flow': 'LAB3-01의 입력 처리와 PWM 채널을 색마다 하나씩, 모두 세 벌 둔다. button_onepulse 세 개가 버튼별 press를 만들고 '
@@ -197,7 +199,7 @@ end""",
 },
 # --------------------------------------------------------------------- 03
 {
- 'id': '03', 'key': 'piezo', 'name': '피에조 단일 음', 'top': 'lab3_piezo', 'tb': 'tb_piezo',
+ 'id': '03', 'code_src': ('src/lab3_piezo.v', 10, 24), 'key': 'piezo', 'name': '피에조 단일 음', 'top': 'lab3_piezo', 'tb': 'tb_piezo',
  'goal': '50 MHz 클록을 분주해 294 Hz(D4, 레) 사각파를 만들고 피에조로 한 음을 계속 낸다.',
  'flow': '입력은 리셋뿐이다. count가 0‥HALF_PERIOD−1을 돌고 끝 값에 닿을 때마다 piezo를 반전한다. '
          '반전 두 번이 한 주기이므로 출력 주파수는 CLK_HZ / (2 × HALF_PERIOD)이고 duty는 50 %다. '
@@ -265,7 +267,7 @@ end""",
 },
 # --------------------------------------------------------------------- 04
 {
- 'id': '04', 'key': 'stepper', 'name': '스텝모터 위상 제어', 'top': 'lab3_stepper', 'tb': 'tb_stepper',
+ 'id': '04', 'code_src': ('src/lab3_stepper.v', 29, 41), 'key': 'stepper', 'name': '스텝모터 위상 제어', 'top': 'lab3_stepper', 'tb': 'tb_stepper',
  'goal': 'clock-enable마다 4상 코일 패턴을 한 칸씩 이동해 스텝모터를 정회전·역회전하고, enable로 정지시킨다.',
  'flow': 'enable(N8)과 direction(N4)은 레벨 입력이지만 비동기이므로 각각 2FF로 동기화한다. '
          'enable_sync가 1인 동안 step 카운터가 STEP_CYCLES마다 한 번 끝 값에 닿고, 그때 state를 direction_sync에 따라 '
@@ -334,7 +336,7 @@ end""",
 },
 # --------------------------------------------------------------------- 05
 {
- 'id': '05', 'key': 'mmss_clock', 'name': 'MM:SS 시계', 'top': 'lab3_mmss_clock', 'tb': 'tb_mmss_counter',
+ 'id': '05', 'code_src': ('src/mmss_counter.v', 20, 40), 'key': 'mmss_clock', 'name': 'MM:SS 시계', 'top': 'lab3_mmss_clock', 'tb': 'tb_mmss_counter',
  'goal': '1초 enable로 00:00부터 59:59까지 세고 다시 00:00으로 돌아가는 시계를 만들고, 4자리 7세그먼트에 MM.SS로 표시한다.',
  'flow': 'mmss_counter는 subsecond가 CLK_HZ−1에 닿을 때마다 한 번 BCD 자리올림을 한다. 초 1의 자리가 9에서 넘치면 초 10의 자리, '
          '59초에서 분 1의 자리, 59분 59초에서 모두 0으로 돌아간다. 네 자리는 sevenseg_decode 네 개로 세그먼트 패턴이 된다. '
@@ -419,7 +421,7 @@ end""",
 },
 # --------------------------------------------------------------------- 06
 {
- 'id': '06', 'key': 'character_lcd', 'name': '문자 LCD 제어', 'top': 'lab3_character_lcd', 'tb': 'tb_character_lcd',
+ 'id': '06', 'code_src': ('src/lab3_character_lcd.v', 87, 106), 'key': 'character_lcd', 'name': '문자 LCD 제어', 'top': 'lab3_character_lcd', 'tb': 'tb_character_lcd',
  'goal': 'HD44780 호환 문자 LCD를 8비트 write-only 방식으로 초기화하고 1행 "FPGA LAB3", 2행 "LCD CONTROLLER"를 표시한다.',
  'flow': 'tick 생성기가 500클록(10 µs)마다 한 클록 폭의 tick을 낸다. 전원 투입 후 2,000 tick(20 ms)을 기다린 뒤 '
          'phase FSM이 바이트마다 0(RS·데이터 셋업) → 1(E HIGH) → 2(E LOW) → 3(명령별 대기)을 반복한다. '
@@ -500,7 +502,7 @@ endcase""",
 },
 # --------------------------------------------------------------------- 07
 {
- 'id': '07', 'key': 'uart_echo', 'name': 'PC–FPGA UART 에코', 'top': 'lab3_uart_echo', 'tb': 'tb_uart_echo',
+ 'id': '07', 'code_src': ('src/lab3_uart_echo.v', 28, 42), 'key': 'uart_echo', 'name': 'PC–FPGA UART 에코', 'top': 'lab3_uart_echo', 'tb': 'tb_uart_echo',
  'goal': 'PC에서 9600 8N1로 받은 한 바이트를 그대로 되돌려 보내고, 마지막 수신값을 LED 8개에 표시한다.',
  'flow': 'uart_rxd(C6)는 비동기이므로 uart_rx가 2FF로 동기화한다. 하강 에지(start)를 보면 반 비트 뒤 한 번 더 확인해 잡음을 거르고, '
          '이후 한 비트 간격(DIV)마다 비트 중앙에서 LSB부터 8비트를 받는다. stop 비트 중앙이 1이면 rx_valid, 0이면 framing_error를 낸다. '
@@ -580,6 +582,43 @@ assign led = last_data;""",
 
 
 # ============================================================ docx helpers
+def lab_dir(x):
+    return f"lab3/lab3_{x['id']}_{x['key']}"
+
+
+def gh(path, first=None, last=None, tree=False):
+    url = f"{REPO}/{'tree' if tree else 'blob'}/{CODE_COMMIT}/{path}"
+    return url + (f'#L{first}-L{last}' if first else '')
+
+
+def add_hyperlink(paragraph, url, text, size=7.0, color='0563C1'):
+    r_id = paragraph.part.relate_to(
+        url, 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink', is_external=True)
+    link = OxmlElement('w:hyperlink')
+    link.set(qn('r:id'), r_id)
+    run = OxmlElement('w:r')
+    rpr = OxmlElement('w:rPr')
+    fonts = OxmlElement('w:rFonts')
+    for key in ('ascii', 'hAnsi', 'eastAsia', 'cs'):
+        fonts.set(qn('w:' + key), FONT)
+    rpr.append(fonts)
+    c = OxmlElement('w:color'); c.set(qn('w:val'), color); rpr.append(c)
+    u = OxmlElement('w:u'); u.set(qn('w:val'), 'single'); rpr.append(u)
+    sz = OxmlElement('w:sz'); sz.set(qn('w:val'), str(int(size * 2))); rpr.append(sz)
+    run.append(rpr)
+    t = OxmlElement('w:t'); t.text = text; t.set(qn('xml:space'), 'preserve'); run.append(t)
+    link.append(run)
+    paragraph._p.append(link)
+
+
+def add_link_line(doc, label, url):
+    p = doc.add_paragraph()
+    para_fmt(p, before=1, after=5, line=1.0)
+    set_font(p.add_run(f'{label}: '), size=7.0, bold=True, color='555555')
+    add_hyperlink(p, url, url)
+    return p
+
+
 def set_font(run, name=FONT, size=10.0, bold=False, color='000000', italic=False):
     run.font.name = name
     run.font.size = Pt(size)
@@ -704,7 +743,7 @@ def spacer(doc, pt=3):
     return p
 
 
-def add_table(doc, headers, rows, widths, size=7.4, center_first=True):
+def add_table(doc, headers, rows, widths, size=7.4, center_first=True, links=None):
     table = doc.add_table(rows=1, cols=len(headers))
     table_setup(table, widths)
     row_props(table.rows[0], header=True)
@@ -727,12 +766,15 @@ def add_table(doc, headers, rows, widths, size=7.4, center_first=True):
             p = cell.paragraphs[0]
             align = WD_ALIGN_PARAGRAPH.CENTER if (cidx == 0 and center_first) else WD_ALIGN_PARAGRAPH.LEFT
             para_fmt(p, after=0, line=1.0, align=align)
-            set_font(p.add_run(str(value).replace('‥', '~')), size=size, color='222222')
+            if links and cidx == 0 and links[ridx]:
+                add_hyperlink(p, links[ridx], str(value), size=size)
+            else:
+                set_font(p.add_run(str(value).replace('‥', '~')), size=size, color='222222')
     spacer(doc, 4)
     return table
 
 
-def add_code(doc, code, size=6.8):
+def add_code(doc, code, size=6.8, link=None, label='GitHub'):
     lines = []
     for line in code.splitlines():
         body = line.lstrip(' ')
@@ -753,7 +795,10 @@ def add_code(doc, code, size=6.8):
         if i:
             p.add_run().add_break()
         set_font(p.add_run(line), name=FONT_CODE, size=size, color='222222')
-    spacer(doc, 4)
+    if link:
+        add_link_line(doc, label, link)
+    else:
+        spacer(doc, 4)
 
 
 def add_figure(doc, path, caption, number, width=FIG_W):
@@ -912,11 +957,14 @@ def build():
         ['템플릿 원격', 'https://github.com/Glaysia/fpga-lab-template.git'],
         ['기준 태그·커밋', 'v2.0.2 · 0b3318e466e9d77f7d3880df09c827788f361913'],
         ['상위 저장소', 'https://github.com/tae2yi/UOS_ece2'],
-        ['작업 기준 HEAD', '8b414e72f9bab7a9fbb23e53208ae41fdffddba6'],
+        ['LAB2 기준 커밋', '67b9370 (lab2_3)'],
+        ['LAB3 코드 커밋', f'{CODE_COMMIT} (보고서의 GitHub 주소가 가리키는 커밋)'],
         ['실험 폴더', 'lab3/lab3_01_led_pwm … lab3_07_uart_echo'],
     ], [1.0, 2.22], size=7.0)
-    add_text(doc, 'LAB3 폴더는 위 HEAD 이후 작업 트리에 추가한 상태다. 제출 전에 src·sim·constraints·simulation.json과 보고서 자료를 '
-                  'commit하고, 최종 commit hash를 실험 후 보고서에 적는다. 수정 실험의 소스 사본·로그·VCD는 lab3/report/pre/mod에 있다.')
+    add_link_line(doc, 'GitHub', gh('lab3', tree=True))
+    add_text(doc, f'LAB3의 RTL·TB·XDC, 빌드 스크립트, 수정 실험 자료는 커밋 {CODE_COMMIT}에 들어 있다. 각 코드 블록 아래의 GitHub 주소는 '
+                  '이 커밋에 고정되어 해당 줄 범위를 가리키므로, 이후 파일이 바뀌어도 보고서의 코드와 일치한다. '
+                  '파일 역할 표의 파일 이름도 같은 커밋의 파일로 연결된다. 실험 후 보고서에는 최종 commit hash를 다시 적는다.')
 
     fig = 1
     for x in LABS:
@@ -933,21 +981,26 @@ def build():
         th, trows, tw = x['timing']
         add_table(doc, th, trows, tw, size=7.2)
         add_heading(doc, 'RTL·TB·XDC의 역할', 2)
-        add_table(doc, ['파일', '역할'], x['files'], [1.28, 1.94], size=7.0, center_first=False)
+        add_table(doc, ['파일', '역할'], x['files'], [1.28, 1.94], size=7.0, center_first=False,
+                  links=[gh(f"{lab_dir(x)}/{f[0]}") for f in x['files']])
         add_text(doc, x['code_intro'], keep_next=True)
-        add_code(doc, x['code'])
+        src, first, last = x['code_src']
+        add_code(doc, x['code'], link=gh(f'{lab_dir(x)}/{src}', first, last))
         if x['code_note']:
             add_text(doc, x['code_note'])
         add_heading(doc, 'TB 자극과 기대 결과', 2)
         add_table(doc, ['단계', 'TB 자극', '기대 결과'], x['stim'], [0.42, 1.3, 1.5], size=7.2)
         add_text(doc, x['stim_note'])
         add_heading(doc, 'Icarus PASS와 정상 파형', 2)
-        add_code(doc, f"$ python tools/fpga_lab.py simulate\n{x['pass']}\n{finish_line(x['id'])}")
+        log_name = f"lab3_{x['id']}_{x['key']}_icarus_normal.txt"
+        add_code(doc, f"$ python tools/fpga_lab.py simulate\n{x['pass']}\n{finish_line(x['id'])}",
+                 link=gh(f'lab3/report/pre/logs/{log_name}'), label='로그')
         add_text(doc, f"Icarus 종료 {x['end_icarus']}, XSim 종료 {x['end_xsim']}. " + x['normal'])
         fig = add_figure(doc, shots[x['id']], x['normal_caption'], fig)
         add_heading(doc, '수정 실험과 복구 결과', 2)
         add_text(doc, x['mod_desc'], keep_next=True)
-        add_code(doc, x['mod_diff'])
+        add_code(doc, x['mod_diff'], link=gh(f"lab3/report/pre/mod/{x['id']}_{x['key']}/modification.diff"),
+                 label='diff')
         add_table(doc, ['구분', '내용'], x['mod_table'], [0.7, 2.52], size=7.2)
         fig = add_figure(doc, IMG / 'col' / f"{x['id']}_{x['key']}_restored.png", x['mod_caps'][0], fig)
         fig = add_figure(doc, IMG / 'col' / f"{x['id']}_{x['key']}_modified.png", x['mod_caps'][1], fig)
