@@ -1,0 +1,9 @@
+RUN C:\iverilog\bin\iverilog.EXE -g2012 -Wall -I C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\src -I C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\sim -s tb_rgb_pwm -o C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\build\sim\run-ca7ccb0c9aab44c6ac59d67987cfecd6\sim.vvp C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\src\button_onepulse.v C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\src\pwm_channel.v C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\src\lab3_rgb_pwm.v C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\sim\tb_rgb_pwm.sv
+
+RUN C:\iverilog\bin\vvp.EXE -N C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\build\sim\run-ca7ccb0c9aab44c6ac59d67987cfecd6\sim.vvp
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_RGB_PWM_PASS checks=2
+C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\sim\tb_rgb_pwm.sv:26: $finish called at 4431000 (1ps)
+
+시뮬레이션 실행 완료. 진리표·자기검사·파형으로 회로의 정답 여부를 확인하세요.
+WAVE C:\ece2\UOS_ece2\lab3\lab3_02_rgb_pwm\build\sim\wave.vcd

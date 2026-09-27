@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_UART_ECHO_PASS checks=3
+../sim/tb_uart_echo.sv:33: $finish called at 9970000 (1ps)

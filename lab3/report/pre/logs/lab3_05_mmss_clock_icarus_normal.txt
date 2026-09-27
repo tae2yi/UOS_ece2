@@ -1,0 +1,9 @@
+RUN C:\iverilog\bin\iverilog.EXE -g2012 -Wall -I C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\src -I C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\sim -s tb_mmss_counter -o C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\build\sim\run-c2043ef97748463b8ede3bda02f029ed\sim.vvp C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\src\mmss_counter.v C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\src\sevenseg_decode.v C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\src\lab3_mmss_clock.v C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\sim\tb_mmss_counter.sv
+
+RUN C:\iverilog\bin\vvp.EXE -N C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\build\sim\run-c2043ef97748463b8ede3bda02f029ed\sim.vvp
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_MMSS_PASS checks=7
+C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\sim\tb_mmss_counter.sv:23: $finish called at 144031000 (1ps)
+
+시뮬레이션 실행 완료. 진리표·자기검사·파형으로 회로의 정답 여부를 확인하세요.
+WAVE C:\ece2\UOS_ece2\lab3\lab3_05_mmss_clock\build\sim\wave.vcd

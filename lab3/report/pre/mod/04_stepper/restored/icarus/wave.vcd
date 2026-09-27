@@ -1,0 +1,314 @@
+$date
+	Mon Sep 28 01:18:49 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_stepper $end
+$var wire 4 ! stepmotor [3:0] $end
+$var reg 1 " clk_50mhz $end
+$var reg 1 # direction $end
+$var reg 1 $ enable $end
+$var reg 1 % rst_p $end
+$var integer 32 & checks [31:0] $end
+$scope module dut $end
+$var wire 1 " clk_50mhz $end
+$var wire 1 # direction $end
+$var wire 1 $ enable $end
+$var wire 1 % rst_p $end
+$var parameter 32 ' CLK_HZ $end
+$var parameter 32 ( COUNT_WIDTH $end
+$var parameter 32 ) STEP_CYCLES $end
+$var parameter 32 * STEP_HZ $end
+$var reg 2 + count [1:0] $end
+$var reg 1 , direction_meta $end
+$var reg 1 - direction_sync $end
+$var reg 1 . enable_meta $end
+$var reg 1 / enable_sync $end
+$var reg 2 0 state [1:0] $end
+$var reg 4 1 stepmotor [3:0] $end
+$upscope $end
+$scope task check_value $end
+$var reg 4 2 value [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10 *
+b100 )
+b10 (
+b1000 '
+$end
+#0
+$dumpvars
+bx 2
+bx 1
+bx 0
+x/
+x.
+x-
+x,
+bx +
+b0 &
+1%
+0$
+0#
+0"
+bx !
+$end
+#10000
+b11 !
+b11 1
+0-
+0,
+0/
+0.
+b0 0
+b0 +
+1"
+#20000
+0"
+#30000
+b11 2
+0%
+1"
+#31000
+1$
+b1 &
+#40000
+0"
+#50000
+1.
+1"
+#60000
+0"
+#70000
+1/
+1"
+#80000
+0"
+#90000
+b1 +
+1"
+#100000
+0"
+#110000
+b10 +
+1"
+#120000
+0"
+#130000
+b11 +
+1"
+#140000
+0"
+#150000
+b110 !
+b110 1
+b110 2
+b1 0
+b0 +
+1"
+#151000
+b10 &
+#160000
+0"
+#170000
+b1 +
+1"
+#180000
+0"
+#190000
+b10 +
+1"
+#200000
+0"
+#210000
+b11 +
+1"
+#220000
+0"
+#230000
+b1100 !
+b1100 1
+b1100 2
+b10 0
+b0 +
+1"
+#231000
+b11 &
+#240000
+0"
+#250000
+b1 +
+1"
+#260000
+0"
+#270000
+b10 +
+1"
+#280000
+0"
+#290000
+b11 +
+1"
+#300000
+0"
+#310000
+b1001 !
+b1001 1
+b1001 2
+b11 0
+b0 +
+1"
+#311000
+b100 &
+#320000
+0"
+#330000
+b1 +
+1"
+#340000
+0"
+#350000
+b10 +
+1"
+#360000
+0"
+#370000
+b11 +
+1"
+#380000
+0"
+#390000
+b11 !
+b11 1
+b11 2
+b0 0
+b0 +
+1"
+#391000
+1#
+b101 &
+#400000
+0"
+#410000
+1,
+b1 +
+1"
+#420000
+0"
+#430000
+b10 +
+1-
+1"
+#440000
+0"
+#450000
+b11 +
+1"
+#460000
+0"
+#470000
+b1001 !
+b1001 1
+b1001 2
+b11 0
+b0 +
+1"
+#471000
+b110 &
+#480000
+0"
+#490000
+b1 +
+1"
+#500000
+0"
+#510000
+b10 +
+1"
+#520000
+0"
+#530000
+b11 +
+1"
+#540000
+0"
+#550000
+b1100 !
+b1100 1
+b1100 2
+b10 0
+b0 +
+1"
+#551000
+0$
+b111 &
+#560000
+0"
+#570000
+0.
+b1 +
+1"
+#580000
+0"
+#590000
+b10 +
+0/
+1"
+#600000
+0"
+#610000
+b0 +
+1"
+#620000
+0"
+#630000
+1"
+#640000
+0"
+#650000
+1"
+#660000
+0"
+#670000
+1"
+#680000
+0"
+#690000
+1"
+#700000
+0"
+#710000
+1"
+#720000
+0"
+#730000
+1"
+#740000
+0"
+#750000
+1"
+#760000
+0"
+#770000
+1"
+#780000
+0"
+#790000
+1"
+#800000
+0"
+#810000
+1"
+#820000
+0"
+#830000
+1"
+#831000
+b1000 &

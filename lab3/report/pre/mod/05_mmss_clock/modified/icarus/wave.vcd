@@ -1,0 +1,217 @@
+$date
+	Mon Sep 28 01:18:50 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_mmss_counter $end
+$var wire 4 ! st [3:0] $end
+$var wire 4 " so [3:0] $end
+$var wire 4 # mt [3:0] $end
+$var wire 4 $ mo [3:0] $end
+$var wire 8 % decoded_segments [7:0] $end
+$var reg 1 & clk_50mhz $end
+$var reg 4 ' decode_digit [3:0] $end
+$var reg 1 ( rst_p $end
+$var integer 32 ) checks [31:0] $end
+$scope module decoder $end
+$var wire 4 * digit [3:0] $end
+$var reg 8 + segments [7:0] $end
+$upscope $end
+$scope module dut $end
+$var wire 1 & clk $end
+$var wire 1 ( rst_p $end
+$var parameter 32 , CLK_HZ $end
+$var parameter 32 - COUNT_WIDTH $end
+$var reg 4 . minute_ones [3:0] $end
+$var reg 4 / minute_tens [3:0] $end
+$var reg 4 0 second_ones [3:0] $end
+$var reg 4 1 second_tens [3:0] $end
+$var reg 2 2 subsecond [1:0] $end
+$upscope $end
+$scope task advance $end
+$var integer 32 3 seconds [31:0] $end
+$upscope $end
+$scope task check_time $end
+$var integer 32 4 emo [31:0] $end
+$var integer 32 5 emt [31:0] $end
+$var integer 32 6 eso [31:0] $end
+$var integer 32 7 est [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10 -
+b100 ,
+$end
+#0
+$dumpvars
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+b11111100 +
+b0 *
+b0 )
+1(
+b0 '
+0&
+b11111100 %
+bx $
+bx #
+bx "
+bx !
+$end
+#1000
+b11110110 %
+b11110110 +
+b1001 '
+b1001 *
+b1 )
+#2000
+b10 )
+#10000
+b0 "
+b0 0
+b0 !
+b0 1
+b0 $
+b0 .
+b0 #
+b0 /
+b0 2
+1&
+#20000
+0&
+#30000
+b1 2
+b1010 3
+b11 )
+b0 6
+b0 7
+b0 4
+b0 5
+0(
+1&
+#40000
+0&
+#50000
+b10 2
+1&
+#60000
+0&
+#70000
+b11 2
+1&
+#80000
+0&
+#90000
+b1 "
+b1 0
+b0 2
+1&
+#100000
+0&
+#110000
+b1 2
+1&
+#120000
+0&
+#130000
+b10 2
+1&
+#140000
+0&
+#150000
+b11 2
+1&
+#160000
+0&
+#170000
+b10 "
+b10 0
+b0 2
+1&
+#180000
+0&
+#190000
+b1 2
+1&
+#200000
+0&
+#210000
+b10 2
+1&
+#220000
+0&
+#230000
+b11 2
+1&
+#240000
+0&
+#250000
+b11 "
+b11 0
+b0 2
+1&
+#260000
+0&
+#270000
+b1 2
+1&
+#280000
+0&
+#290000
+b10 2
+1&
+#300000
+0&
+#310000
+b11 2
+1&
+#320000
+0&
+#330000
+b100 "
+b100 0
+b0 2
+1&
+#340000
+0&
+#350000
+b1 2
+1&
+#360000
+0&
+#370000
+b10 2
+1&
+#380000
+0&
+#390000
+b11 2
+1&
+#400000
+0&
+#410000
+b101 "
+b101 0
+b0 2
+1&
+#420000
+0&
+#430000
+b1 2
+1&
+#431000
+b1 7

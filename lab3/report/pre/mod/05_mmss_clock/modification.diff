@@ -1,0 +1,11 @@
+--- restored/sim/tb_mmss_counter.sv	2026-09-28 01:07:04.669051300 +0900
++++ modified/sim/tb_mmss_counter.sv	2026-09-28 01:07:04.691209900 +0900
+@@ -6,7 +6,7 @@
+     wire [7:0] decoded_segments;
+     integer checks=0;
+     always #10 clk_50mhz=~clk_50mhz;
+-    mmss_counter #(.CLK_HZ(2)) dut(.clk(clk_50mhz),.rst_p(rst_p),.minute_tens(mt),.minute_ones(mo),.second_tens(st),.second_ones(so));
++    mmss_counter #(.CLK_HZ(4)) dut(.clk(clk_50mhz),.rst_p(rst_p),.minute_tens(mt),.minute_ones(mo),.second_tens(st),.second_ones(so));
+     sevenseg_decode decoder(.digit(decode_digit),.segments(decoded_segments));
+     task advance(input integer seconds);begin repeat(seconds*2)@(posedge clk_50mhz);#1;end endtask
+     task check_time(input integer emt,input integer emo,input integer est,input integer eso);

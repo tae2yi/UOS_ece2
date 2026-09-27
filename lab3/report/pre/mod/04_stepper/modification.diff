@@ -1,0 +1,11 @@
+--- restored/sim/tb_stepper.sv	2026-09-28 01:06:54.188360600 +0900
++++ modified/sim/tb_stepper.sv	2026-09-28 01:06:54.209379800 +0900
+@@ -4,7 +4,7 @@
+     wire [3:0] stepmotor;
+     integer checks=0;
+     always #10 clk_50mhz=~clk_50mhz;
+-    lab3_stepper #(.CLK_HZ(8),.STEP_HZ(2)) dut
++    lab3_stepper #(.CLK_HZ(8),.STEP_HZ(1)) dut
+       (.clk_50mhz(clk_50mhz),.rst_p(rst_p),.enable(enable),.direction(direction),.stepmotor(stepmotor));
+     task check_value(input [3:0] value);begin #1;if(stepmotor!==value)$fatal(1,"got=%b expected=%b",stepmotor,value);checks++;end endtask
+     initial begin

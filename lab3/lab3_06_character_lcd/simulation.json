@@ -1,0 +1,5 @@
+{
+  "sources": ["src/lab3_character_lcd.v"],
+  "testbench": "sim/tb_character_lcd.sv",
+  "simulation_top": "tb_character_lcd"
+}

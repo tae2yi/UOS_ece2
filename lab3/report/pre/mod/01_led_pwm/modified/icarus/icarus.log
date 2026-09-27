@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+FATAL: ../sim/tb_led_pwm.sv:20: level=3 high=6
+       Time: 1231000  Scope: tb_led_pwm.expect_level

@@ -1,0 +1,5 @@
+{
+  "sources": ["src/lab3_piezo.v"],
+  "testbench": "sim/tb_piezo.sv",
+  "simulation_top": "tb_piezo"
+}

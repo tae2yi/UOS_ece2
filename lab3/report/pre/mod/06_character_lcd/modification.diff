@@ -1,0 +1,11 @@
+--- restored/src/lab3_character_lcd.v	2026-09-28 01:07:15.275111600 +0900
++++ modified/src/lab3_character_lcd.v	2026-09-28 01:07:15.297127600 +0900
+@@ -69,7 +69,7 @@
+             34: begin byte_rs=1; byte_data="L"; end
+             35: begin byte_rs=1; byte_data="L"; end
+             36: begin byte_rs=1; byte_data="E"; end
+-            37: begin byte_rs=1; byte_data="R"; end
++            37: begin byte_rs=1; byte_data="S"; end
+             38,39: begin byte_rs=1; byte_data=" "; end
+             default: byte_data = 8'h00;
+         endcase

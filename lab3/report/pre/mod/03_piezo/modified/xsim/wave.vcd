@@ -1,0 +1,153 @@
+$date
+   Mon Sep 28 01:06:48 2026
+$end
+
+$version
+  2025.2
+  $dumpfile ("wave.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_piezo $end
+$var reg 1 ! clk_50mhz $end
+$var reg 1 " rst_p $end
+$var wire 1 # piezo $end
+$var integer 32 $ cycles [31:0] $end
+$var integer 32 % last_cycle [31:0] $end
+$var integer 32 & edges [31:0] $end
+$scope module dut $end
+$var wire 1 ' clk_50mhz $end
+$var wire 1 ( rst_p $end
+$var reg 1 ) piezo $end
+$var reg 2 * count [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+1"
+0#
+bx $
+b11111111111111111111111111111111 %
+b0 &
+0'
+1(
+0)
+b0 *
+$end
+
+#10000
+1!
+1'
+
+#20000
+0!
+0'
+
+#30000
+1!
+1'
+
+#40000
+0!
+0'
+
+#50000
+1!
+0"
+b1 $
+1'
+0(
+b1 *
+
+#60000
+0!
+0'
+
+#70000
+1!
+1'
+b10 *
+
+#71000
+b10 $
+
+#80000
+0!
+0'
+
+#90000
+1!
+1'
+b11 *
+
+#91000
+b11 $
+
+#100000
+0!
+0'
+
+#110000
+1!
+1#
+1'
+1)
+b0 *
+
+#111000
+b100 $
+b11 %
+b1 &
+
+#120000
+0!
+0'
+
+#130000
+1!
+1'
+b1 *
+
+#131000
+b101 $
+
+#140000
+0!
+0'
+
+#150000
+1!
+1'
+b10 *
+
+#151000
+b110 $
+
+#160000
+0!
+0'
+
+#170000
+1!
+1'
+b11 *
+
+#171000
+b111 $
+
+#180000
+0!
+0'
+
+#190000
+1!
+0#
+1'
+0)
+b0 *

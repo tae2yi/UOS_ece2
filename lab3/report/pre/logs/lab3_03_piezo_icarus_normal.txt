@@ -1,0 +1,9 @@
+RUN C:\iverilog\bin\iverilog.EXE -g2012 -Wall -I C:\ece2\UOS_ece2\lab3\lab3_03_piezo\src -I C:\ece2\UOS_ece2\lab3\lab3_03_piezo\sim -s tb_piezo -o C:\ece2\UOS_ece2\lab3\lab3_03_piezo\build\sim\run-4e9881ada3c24e2ab19447f5d7114865\sim.vvp C:\ece2\UOS_ece2\lab3\lab3_03_piezo\src\lab3_piezo.v C:\ece2\UOS_ece2\lab3\lab3_03_piezo\sim\tb_piezo.sv
+
+RUN C:\iverilog\bin\vvp.EXE -N C:\ece2\UOS_ece2\lab3\lab3_03_piezo\build\sim\run-4e9881ada3c24e2ab19447f5d7114865\sim.vvp
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_PIEZO_PASS edges=5
+C:\ece2\UOS_ece2\lab3\lab3_03_piezo\sim\tb_piezo.sv:20: $finish called at 551000 (1ps)
+
+시뮬레이션 실행 완료. 진리표·자기검사·파형으로 회로의 정답 여부를 확인하세요.
+WAVE C:\ece2\UOS_ece2\lab3\lab3_03_piezo\build\sim\wave.vcd
