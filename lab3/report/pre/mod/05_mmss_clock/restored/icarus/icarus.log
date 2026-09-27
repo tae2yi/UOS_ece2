@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_MMSS_PASS checks=7
+../sim/tb_mmss_counter.sv:23: $finish called at 144031000 (1ps)

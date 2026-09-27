@@ -1,0 +1,9 @@
+RUN C:\iverilog\bin\iverilog.EXE -g2012 -Wall -I C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\src -I C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\sim -s tb_character_lcd -o C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\build\sim\run-a00f2a2f40ed4b7fbdb5c981a5dd0e73\sim.vvp C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\src\lab3_character_lcd.v C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\sim\tb_character_lcd.sv
+
+RUN C:\iverilog\bin\vvp.EXE -N C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\build\sim\run-a00f2a2f40ed4b7fbdb5c981a5dd0e73\sim.vvp
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_LCD_PASS bytes=40
+C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\sim\tb_character_lcd.sv:31: $finish called at 8130000 (1ps)
+
+시뮬레이션 실행 완료. 진리표·자기검사·파형으로 회로의 정답 여부를 확인하세요.
+WAVE C:\ece2\UOS_ece2\lab3\lab3_06_character_lcd\build\sim\wave.vcd

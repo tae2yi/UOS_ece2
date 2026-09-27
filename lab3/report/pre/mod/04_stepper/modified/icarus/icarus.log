@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_STEPPER_PASS checks=8
+../sim/tb_stepper.sv:20: $finish called at 1311000 (1ps)

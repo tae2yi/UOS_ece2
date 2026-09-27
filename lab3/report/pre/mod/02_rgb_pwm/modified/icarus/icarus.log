@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+FATAL: ../sim/tb_rgb_pwm.sv:18: rgb high=5,5,8
+       Time: 3851000  Scope: tb_rgb_pwm.measure

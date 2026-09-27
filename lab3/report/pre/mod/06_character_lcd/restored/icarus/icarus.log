@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB3_LCD_PASS bytes=40
+../sim/tb_character_lcd.sv:31: $finish called at 8130000 (1ps)

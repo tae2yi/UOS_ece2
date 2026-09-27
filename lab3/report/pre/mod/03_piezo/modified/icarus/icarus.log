@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+FATAL: ../sim/tb_piezo.sv:15: half period=4
+       Time: 191000  Scope: tb_piezo

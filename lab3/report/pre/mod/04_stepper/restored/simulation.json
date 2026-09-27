@@ -1,0 +1,5 @@
+{
+  "sources": ["src/lab3_stepper.v"],
+  "testbench": "sim/tb_stepper.sv",
+  "simulation_top": "tb_stepper"
+}

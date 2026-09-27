@@ -1,0 +1,112 @@
+$date
+	Mon Sep 28 01:18:48 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_piezo $end
+$var wire 1 ! piezo $end
+$var reg 1 " clk_50mhz $end
+$var reg 1 # rst_p $end
+$var integer 32 $ cycles [31:0] $end
+$var integer 32 % edges [31:0] $end
+$var integer 32 & last_cycle [31:0] $end
+$scope module dut $end
+$var wire 1 " clk_50mhz $end
+$var wire 1 # rst_p $end
+$var parameter 32 ' CLK_HZ $end
+$var parameter 32 ( COUNT_WIDTH $end
+$var parameter 32 ) HALF_PERIOD $end
+$var parameter 32 * TONE_HZ $end
+$var reg 2 + count [1:0] $end
+$var reg 1 ! piezo $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1111101 *
+b100 )
+b10 (
+b1111101000 '
+$end
+#0
+$dumpvars
+bx +
+b11111111111111111111111111111111 &
+b0 %
+bx $
+1#
+0"
+x!
+$end
+#10000
+0!
+b0 +
+1"
+#20000
+0"
+#30000
+1"
+#40000
+0"
+#50000
+b1 +
+b1 $
+0#
+1"
+#60000
+0"
+#70000
+b10 +
+1"
+#71000
+b10 $
+#80000
+0"
+#90000
+b11 +
+1"
+#91000
+b11 $
+#100000
+0"
+#110000
+1!
+b0 +
+1"
+#111000
+b100 $
+b1 %
+b11 &
+#120000
+0"
+#130000
+b1 +
+1"
+#131000
+b101 $
+#140000
+0"
+#150000
+b10 +
+1"
+#151000
+b110 $
+#160000
+0"
+#170000
+b11 +
+1"
+#171000
+b111 $
+#180000
+0"
+#190000
+0!
+b0 +
+1"
+#191000

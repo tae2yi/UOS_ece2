@@ -1,0 +1,11 @@
+--- restored/sim/tb_led_pwm.sv	2026-09-28 01:06:11.080819400 +0900
++++ modified/sim/tb_led_pwm.sv	2026-09-28 01:06:11.101818300 +0900
+@@ -4,7 +4,7 @@
+     wire [7:0] led;
+     integer checks=0, high_count, i;
+     always #10 clk_50mhz=~clk_50mhz;
+-    lab3_led_pwm #(.CLK_HZ(1000),.PWM_HZ(100),.LEVELS(10),.DEBOUNCE_CYCLES(2)) dut
++    lab3_led_pwm #(.CLK_HZ(1000),.PWM_HZ(100),.LEVELS(5),.DEBOUNCE_CYCLES(2)) dut
+         (.clk_50mhz(clk_50mhz),.rst_p(rst_p),.button(button),.led(led));
+ 
+     task press_button;
