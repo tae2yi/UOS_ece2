@@ -34,4 +34,7 @@ report_clocks -file $evidence_dir/clocks.rpt
 report_utilization -file $evidence_dir/utilization.rpt
 report_io -file $evidence_dir/io.rpt
 puts "WNS: [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]"
+# Copy the bit out of the ignored vivado/ folder so it can be committed.
+file mkdir $proj_root/bitstream
+file copy -force $proj_root/vivado/$proj_name.runs/impl_1/$top.bit $proj_root/bitstream/$top.bit
 puts "BITSTREAM_DONE: $proj_root/vivado/$proj_name.runs/impl_1/$top.bit"

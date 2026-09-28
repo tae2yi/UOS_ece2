@@ -1,0 +1,9 @@
+design top : lab3_character_lcd
+part       : xc7s75fgga484-1
+tool       : Vivado 2025.2 (batch, tools/build_bitstream.tcl)
+source     : https://github.com/tae2yi/UOS_ece2/tree/090e0da/lab3/lab3_06_character_lcd
+built      : 2026-09-28 00:43
+DRC errors : 0
+WNS        : 14.243 ns (clk_50mhz 20.000 ns)
+sha256     : 128f8bf3da0b7dd361e19e327c603436c8ff6ab1e2c8e7bc9034e9e478d0e4f6
+program    : Vivado Hardware Manager -> Open Target -> Auto Connect -> Program Device -> lab3_character_lcd.bit
