@@ -1,0 +1,4 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_FAIL                                                                                 up including 15 to 0 time=16000
+FATAL: C:/ece2/UOS_ece2/lab2/lab2_01_counter/sim/tb_counter4.sv:12: check failed
+       Time: 16000  Scope: tb_counter4.check

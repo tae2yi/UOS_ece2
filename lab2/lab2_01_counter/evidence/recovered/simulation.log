@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+LAB2_PASS counter4 checks=36
+C:/ece2/UOS_ece2/lab2/lab2_01_counter/sim/tb_counter4.sv:19: $finish called at 356000 (1ps)
