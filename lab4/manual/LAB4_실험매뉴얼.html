@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>LAB4 실험 매뉴얼</title>
+<style>
+@page { size: A4; margin: 15mm 15mm 16mm 15mm; }
+* { box-sizing: border-box; }
+body { font-family: "NanumGothic", "Nanum Gothic", "Malgun Gothic", sans-serif; font-size: 9.6pt;
+       line-height: 1.5; color: #1a1a1a; margin: 0; }
+h1 { font-size: 20pt; margin: 0 0 2mm; color: #0b3d91; }
+h2 { font-size: 13.5pt; color: #fff; background: #0b3d91; padding: 1.6mm 3mm; margin: 7mm 0 3mm;
+     break-after: avoid; }
+h3 { font-size: 11pt; color: #0b3d91; border-bottom: 1.2pt solid #0b3d91; padding-bottom: .6mm;
+     margin: 5mm 0 2mm; break-after: avoid; }
+h4 { font-size: 9.8pt; margin: 3.5mm 0 1mm; break-after: avoid; }
+p { margin: 1.2mm 0; }
+ul, ol { margin: 1mm 0 1.5mm; padding-left: 5.5mm; }
+li { margin: .5mm 0; }
+code { font-family: Consolas, "D2Coding", monospace; font-size: 8.6pt; background: #eef1f6;
+       padding: 0 1mm; border-radius: 1mm; }
+pre { font-family: Consolas, "D2Coding", monospace; font-size: 8.2pt; line-height: 1.38;
+      background: #f3f5f9; border-left: 2.2pt solid #0b3d91; padding: 2mm 3mm; margin: 1.5mm 0 2.5mm;
+      white-space: pre-wrap; word-break: break-all; break-inside: avoid; }
+pre code { background: none; padding: 0; font-size: inherit; }
+table { border-collapse: collapse; width: 100%; margin: 1.5mm 0 3mm; font-size: 8.8pt; break-inside: avoid; }
+table.long { break-inside: auto; }
+tr { break-inside: avoid; }
+th { background: #dfe6f3; text-align: left; }
+th, td { border: .6pt solid #8a94a6; padding: 1mm 1.8mm; vertical-align: top; }
+td.blank { min-width: 26mm; }
+td.c, th.c { text-align: center; }
+td.m { font-family: Consolas, monospace; font-size: 8.6pt; }
+.sub { color: #555; font-size: 9pt; margin-bottom: 3mm; }
+.note { border: .8pt solid #c98a00; background: #fff8e6; padding: 1.6mm 3mm; margin: 2mm 0; break-inside: avoid; }
+.info { border: .8pt solid #0b3d91; background: #f1f5fc; padding: 1.6mm 3mm; margin: 2mm 0; break-inside: avoid; }
+.note b:first-child, .info b:first-child { display: inline-block; margin-right: 1mm; }
+.cb { list-style: none; padding-left: 0; }
+.cb li { padding-left: 6mm; position: relative; }
+.cb li::before { content: ""; position: absolute; left: .6mm; top: 1.1mm; width: 2.8mm; height: 2.8mm;
+                 border: .8pt solid #333; }
+figure { margin: 2mm 0 3mm; text-align: center; break-inside: avoid; }
+figure img { max-width: 100%; border: .5pt solid #b5bcc9; }
+figcaption { font-size: 8.6pt; color: #444; margin-top: .8mm; }
+.two { display: flex; gap: 4mm; }
+.two > div { flex: 1; min-width: 0; }
+.pb { break-before: page; }
+</style>
+</head>
+<body>
+
+<h1>LAB4 실험 매뉴얼 · STM32_0과 FPGA 2개</h1>
+<div class="sub">전자전기컴퓨터설계실험Ⅱ · 2026-10-12 실험용 · 김태이(2023440158) · M1 Pro MacBook에서 <code>tae2yi/UOS_ece2</code>를 풀 해서 진행<br>
+보드: NUCLEO-G474RE, Combo II-DLD(xc7s75fgga484-1) · 수업 자료: <code>Glaysia/ece2_474</code> v1.1.0</div>
+
+<div class="note"><b>먼저 읽기</b> 이 문서의 맥 명령은 Windows PC에서 작성했고 맥에서 실행해 보지 못했다. 경로가 다르면 각 절의 "안 될 때"를 본다.
+Vivado 2026.1에서도 스크립트를 돌려 보지 못했다(작성·검증은 2025.2). 그리고 FPGA 핀과 PB0 헤더 위치는 실험 전에 교재·보드 설명서와 대조해야 한다(4.4, 3.4절).</div>
+
+<h2>1. 오늘 할 일</h2>
+<table>
+<tr><th style="width:8mm" class="c">순서</th><th style="width:36mm">항목</th><th>할 일</th><th style="width:44mm">끝났다고 볼 기준</th></tr>
+<tr><td class="c">0</td><td>준비</td><td>저장소 풀, 도구 확인, 보드 연결</td><td>빌드 성공, ST-LINK 인식</td></tr>
+<tr><td class="c">1</td><td>제공 예제 1</td><td>1초 간격 LED 점멸</td><td>PA5 LED가 1초마다 바뀜</td></tr>
+<tr><td class="c">2</td><td>제공 예제 2</td><td>버튼을 누르면 LED 상태 변경</td><td>누를 때마다 한 번씩 바뀜</td></tr>
+<tr><td class="c">3</td><td>STM32_0_과제1</td><td>버튼으로 점멸 간격 1→2→4→8→1초</td><td>세 조건(3.3절) 모두 확인</td></tr>
+<tr><td class="c">4</td><td>STM32_0_과제2</td><td>같은 동작을 PB0 외부 LED로</td><td>외부 LED에서 간격 변경까지 확인</td></tr>
+<tr><td class="c">5</td><td>FPGA ① 4비트 곱셈기</td><td>시뮬레이션 → 보드 시연</td><td>표의 입력 12개가 LED와 일치</td></tr>
+<tr><td class="c">6</td><td>FPGA ② BCD→이진수</td><td>시뮬레이션 → 보드 시연</td><td>유효 8개·무효 4개가 LED와 일치</td></tr>
+<tr><td class="c">7</td><td>마무리</td><td>사진·영상 정리, 커밋, 태그</td><td>푸시 완료, 해시 기록</td></tr>
+</table>
+
+<h4>준비물</h4>
+<ul class="cb">
+<li>NUCLEO-G474RE, USB 케이블(데이터가 되는 것), 맥용 USB-C 어댑터</li>
+<li>LED 1개, 저항 330 Ω~1 kΩ 1개, 점퍼선 2개(암-수), 브레드보드</li>
+<li>Combo II-DLD 보드와 JTAG 케이블, 교재(곱셈기·BCD 변환 실습의 핀 표)</li>
+<li>휴대폰(영상 촬영·스톱워치)</li>
+</ul>
+
+<h2>2. 맥 준비</h2>
+<h3>2.1 저장소 받기</h3>
+<pre><code>cd ~/UOS_ece2            # 저장소를 둔 위치로 바꾼다
+git pull
+ls lab4</code></pre>
+<p><code>lab4</code> 아래 구성은 다음과 같다.</p>
+<table>
+<tr><th style="width:46mm">폴더</th><th>내용</th></tr>
+<tr><td><code>stm32_lab/</code></td><td>수업 프로젝트 v1.1.0. <code>Core/Src/ece2_474_routine.c</code>에 과제1·2 코드가 들어 있다.</td></tr>
+<tr><td><code>stm32_0_hostsim/</code></td><td>보드 없이 PC에서 과제 코드를 돌려 본 것. <code>variants/</code>에 제공 예제 1·2와 떨림 대비 코드가 있다.</td></tr>
+<tr><td><code>lab4_01_mult_4bit/</code></td><td>4비트 곱셈기. <code>src/</code>, <code>sim/</code>, <code>constraints/</code>, <code>bitstream/mult_4bit.bit</code></td></tr>
+<tr><td><code>lab4_02_bcd_conv/</code></td><td>BCD→이진수. 구성은 위와 같고 <code>bitstream/bcd_conv.bit</code></td></tr>
+<tr><td><code>report/pre/</code></td><td>예비보고서(docx, PDF)와 그림·로그</td></tr>
+<tr><td><code>manual/</code></td><td>이 문서</td></tr>
+</table>
+<p><code>build/</code>와 <code>vivado/</code> 폴더는 저장소에 올리지 않았다. 맥에서 처음 빌드할 때 새로 만들어진다.</p>
+
+<h3>2.2 STM32 빌드와 다운로드 — 방법 A: VS Code(수업 매뉴얼 방식)</h3>
+<ol>
+<li>VS Code 확장에서 <b>STM32CubeIDE for Visual Studio Code</b>와 <b>Serial Monitor</b>(Microsoft)를 설치한다.</li>
+<li><code>lab4/stm32_lab/ece2_474.code-workspace</code>를 연다. 터미널에서는 <code>code lab4/stm32_lab/ece2_474.code-workspace</code>.</li>
+<li>도구 설치와 프로젝트 설정을 묻는 알림에 <b>Yes</b>를 누른다. 설치 목록에서 <code>gnu-tools-for-stm32</code>도 고른다.</li>
+<li>왼쪽 <b>CMake</b> 메뉴 → Configure 아래 <b>Debug</b> 선택 → <b>Build</b> 오른쪽 버튼.</li>
+<li>보드의 <b>JP5 점퍼가 5V_STLK</b>에 있는지 보고 ST-LINK USB 단자를 맥에 연결한다.</li>
+<li><b>실행 및 디버그</b>에서 <code>STM32Cube: Launch ST-Link GDB Server</code>를 고르고 <b>F5</b>. <code>main</code>에서 멈추면 <b>F5를 한 번 더</b> 누른다.</li>
+</ol>
+<div class="info"><b>코드를 바꿀 때마다</b> 디버깅 종료(Shift+F5) → 저장 → <b>F5</b>. Build만 하거나 보드의 RESET만 누르면 보드에는 예전 프로그램이 그대로 있다.</div>
+
+<h3>2.3 방법 B: 터미널(확장이 말썽일 때)</h3>
+<p>맥에 설치된 STM32CubeIDE 안의 컴파일러와 STM32CubeProgrammer를 쓴다. cmake와 ninja가 없으면 <code>brew install cmake ninja</code>.</p>
+<pre><code># 컴파일러 위치를 찾아 PATH에 넣는다
+GCC="$(find /Applications -name arm-none-eabi-gcc -type f 2>/dev/null | head -1)"
+echo "$GCC"                       # 비어 있으면 CubeIDE 설치 위치를 직접 찾는다
+export PATH="$(dirname "$GCC"):$PATH"
+
+cd lab4/stm32_lab
+cmake --preset Debug
+cmake --build --preset Debug      # build/Debug/ece2_474.elf 생성
+
+# 보드에 기록하고 리셋한다
+PROG="$(find /Applications -name STM32_Programmer_CLI -type f 2>/dev/null | head -1)"
+"$PROG" -c port=SWD -w build/Debug/ece2_474.elf -v -rst</code></pre>
+<p>Windows에서 Arm GCC 13.3으로 빌드했을 때 크기는 Flash 25,848 B, RAM 2,656 B였다. 컴파일러 버전이 다르면 조금 달라진다.
+방법 B에는 디버거가 없다. 이번 주 과제는 디버거 없이 할 수 있고, 중단점은 다음 주(STM32_1_과제4)에 필요하다.</p>
+
+<h3>2.4 FPGA 도구</h3>
+<pre><code>brew install icarus-verilog       # iverilog, vvp가 없을 때만
+cd lab4/lab4_01_mult_4bit
+python3 tools/fpga_lab.py check   # Python, Git, Icarus 확인</code></pre>
+<p>Vivado는 2026.1을 쓰는 환경의 터미널에서 <code>vivado -version</code>으로 확인한다. Vivado가 가상 머신 안에 있다면 JTAG 케이블의 USB를 그 가상 머신에 연결해야 Hardware Manager가 보드를 찾는다.</p>
+
+<h2>3. STM32_0 진행</h2>
+<p>수정하는 파일은 <code>lab4/stm32_lab/Core/Src/ece2_474_routine.c</code> 하나다. <code>polling_routine()</code>을 <b>교체</b>한다. 같은 이름의 함수를 하나 더 만들면 링크 오류가 난다. <code>ece2_474_init()</code>은 비워 둔다.</p>
+<div class="info"><b>코드 되돌리기</b> 과제1 코드는 커밋되어 있다. 예제를 실행한 뒤에는 아래 명령으로 과제 코드로 돌아간다.
+<pre><code>git restore lab4/stm32_lab/Core/Src/ece2_474_routine.c</code></pre></div>
+
+<h3>3.1 제공 예제 1 · 1초 간격 LED</h3>
+<p><code>lab4/stm32_0_hostsim/variants/example1_blink.c</code>의 <code>polling_routine</code> 함수 본문을 <code>ece2_474_routine.c</code>의 같은 함수 자리에 붙여 넣고 F5.</p>
+<table>
+<tr><th>볼 것</th><th>예상</th><th style="width:40mm">실제(적기)</th></tr>
+<tr><td>PA5 LED(LD2, 녹색)가 바뀌는 간격</td><td>1초. 켜짐 1초 + 꺼짐 1초 = 주기 2초</td><td class="blank"></td></tr>
+<tr><td>10번 바뀌는 데 걸린 시간</td><td>약 10초</td><td class="blank"></td></tr>
+<tr><td>전원을 넣은 직후</td><td>꺼진 상태로 시작, 1초 뒤 처음 켜짐</td><td class="blank"></td></tr>
+</table>
+
+<h3>3.2 제공 예제 2 · 버튼을 누르면 LED 변경</h3>
+<p><code>variants/example2_button.c</code>의 함수로 교체하고 F5. 버튼은 파란색 B1(PC13)이다. 검은색은 RESET이다.</p>
+<table>
+<tr><th>볼 것</th><th>예상</th><th style="width:40mm">실제(적기)</th></tr>
+<tr><td>짧게 한 번 누름</td><td>LED 상태가 한 번 바뀜</td><td class="blank"></td></tr>
+<tr><td>3초 이상 누르고 있음</td><td>누른 순간 한 번만 바뀌고 그대로</td><td class="blank"></td></tr>
+<tr><td>0.2초 안에 두 번 빠르게 누름</td><td>두 번째는 무시될 수 있음(200 ms 조건)</td><td class="blank"></td></tr>
+<tr><td>10번 눌렀을 때 바뀐 횟수</td><td>10번. 다르면 떨림이나 놓침이 있는 것</td><td class="blank"></td></tr>
+</table>
+
+<h3>3.3 STM32_0_과제1 · 버튼으로 간격 변경</h3>
+<p><code>git restore</code>로 과제 코드로 돌아가 F5. 파일 위쪽의 <code>STM32_0_USE_EXTERNAL_LED</code>가 <b>0</b>인지 확인한다(55번째 줄).</p>
+<pre style="break-inside:auto"><code>void polling_routine(void)
+{
+    static GPIO_PinState previous = GPIO_PIN_RESET;
+    static uint32_t last_press_ms = 0;
+    static uint32_t last_toggle_ms = 0;
+    static uint32_t interval_ms = 1000U;          /* 추가한 변수: 현재 간격 */
+    GPIO_PinState current =
+        HAL_GPIO_ReadPin(BUTTON_ece2_GPIO_Port, BUTTON_ece2_Pin);
+    uint32_t now_ms = HAL_GetTick();
+
+    if (current == GPIO_PIN_SET && previous == GPIO_PIN_RESET   /* 누른 순간 */
+        && now_ms - last_press_ms >= 200U)                      /* 200 ms 잠금 */
+    {
+        last_press_ms = now_ms;
+        interval_ms = (interval_ms >= 8000U)
+                      ? 1000U : interval_ms * 2U;               /* 1→2→4→8→1 s */
+    }
+    previous = current;
+
+    if (now_ms - last_toggle_ms >= interval_ms)                 /* 간격이 지났으면 */
+    {
+        last_toggle_ms = now_ms;
+        HAL_GPIO_TogglePin(BLINK_LED_GPIO_Port, BLINK_LED_Pin);
+    }
+}</code></pre>
+<h4>매뉴얼이 요구하는 세 조건</h4>
+<table>
+<tr><th style="width:8mm" class="c">#</th><th>확인 방법</th><th>예상</th><th style="width:36mm">실제(적기)</th></tr>
+<tr><td class="c">1</td><td>리셋 후 버튼을 한 번씩 누르면서 간격을 잰다. 간격마다 3번 이상 바뀌는 것을 본 뒤 다음으로 넘어간다.</td><td>1 → 2 → 4 → 8 → 1초 순서</td><td class="blank"></td></tr>
+<tr><td class="c">2</td><td>버튼에서 손을 떼고 30초쯤 둔다.</td><td>고른 간격으로 계속 깜빡임</td><td class="blank"></td></tr>
+<tr><td class="c">3</td><td>버튼을 6초 이상 누르고 있는다.</td><td>간격은 한 번만 바뀜</td><td class="blank"></td></tr>
+</table>
+<h4>더 볼 것(코드에서 나오는 동작)</h4>
+<ul>
+<li><b>누른 뒤 첫 변화 시점</b>: 버튼을 눌러도 시간 기준(<code>last_toggle_ms</code>)은 그대로다. 그래서 다음 변화는 "마지막으로 바뀐 때 + 새 간격"에 온다. 1초 간격에서 바뀐 지 0.5초 뒤에 누르면 그로부터 1.5초 뒤에 바뀐다.</li>
+<li><b>8초 → 1초로 돌아올 때</b>: 마지막 변화에서 이미 1초가 넘게 지났으면 누르자마자 LED가 바뀐다. 오동작이 아니다.</li>
+<li><b>간격 오차</b>: 스톱워치로는 ±0.2초쯤 차이가 난다. 정확히 보려면 영상을 찍어 프레임 수로 센다(30 fps면 1초가 30프레임).</li>
+</ul>
+<figure><img src="../report/pre/images/hostsim/task1_cycle.png" style="width:150mm">
+<figcaption>PC에서 과제1 코드를 돌린 결과. 버튼을 4.5, 10.5, 22.5, 46.5초에 누르면 LED는 1, 2, 3, 4 | 6, 8, 10 | 14, 18, 22 | 30, 38, 46 | 47, 48 …초에 바뀐다.</figcaption></figure>
+
+<div class="note"><b>떼는 순간의 떨림</b> 버튼을 0.2초보다 길게 눌렀다 뗄 때 접점이 떨리면, 떼는 순간을 새로 누른 것으로 보고 간격이 한 번 더 바뀔 수 있다(예: 2초 다음에 8초).
+PC 모델에서 나온 결과라 실제 버튼에서 생기는지는 해 봐야 안다. <b>길게(약 1초) 눌렀다 떼기를 10번</b> 해서 건너뛴 횟수를 적는다.
+건너뛰면 <code>variants/task1_release_guard.c</code>의 함수로 교체한다. 이 코드는 누름·뗌 어느 쪽이든 직전 변화에서 50 ms가 지난 뒤의 누름만 인정한다.
+교체한 코드는 LED 이름이 <code>LED_ece2_…</code>로 적혀 있으니 과제2에서도 쓰려면 <code>BLINK_LED_GPIO_Port</code>, <code>BLINK_LED_Pin</code>으로 바꾼다. 바꾸기 전후 결과를 둘 다 기록해 두면 결과보고서의 "문제 해결 과정"이 된다.</div>
+
+<h3>3.4 STM32_0_과제2 · 외부 LED</h3>
+<div class="two">
+<div>
+<ol>
+<li><b>USB를 뽑고</b> 결선한다. PB0 → 저항 → LED 긴 다리(+), LED 짧은 다리(−) → 보드의 GND.</li>
+<li>55번째 줄을 <code>#define STM32_0_USE_EXTERNAL_LED 1</code>로 바꾼다. 이 값이 1이면 LED 핀이 <code>GPIO_OUT1_ece2</code>(PB0)로 바뀐다.</li>
+<li>저장하고 F5. 3.3절의 세 조건을 외부 LED에서 다시 확인한다.</li>
+<li>PB1을 쓰려면 매크로 블록의 <code>GPIO_OUT1_ece2</code> 두 곳을 <code>GPIO_OUT2_ece2</code>로 바꾼다.</li>
+</ol>
+<p>PB0의 헤더 위치는 <b>CN7의 34번 핀(Arduino 헤더로는 A3)</b>으로 알고 있으나 보드 설명서로 확인하지 못했다. 꽂기 전에 UM2505의 커넥터 표나 보드 뒷면 표기와 대조한다.</p>
+</div>
+<div>
+<figure><img src="../report/pre/images/block/stm32_led_wiring.png" style="width:82mm"><figcaption>과제2 결선</figcaption></figure>
+</div>
+</div>
+<table>
+<tr><th>볼 것</th><th>예상</th><th style="width:40mm">실제(적기)</th></tr>
+<tr><td>외부 LED의 간격 변화</td><td>1 → 2 → 4 → 8 → 1초</td><td class="blank"></td></tr>
+<tr><td>내장 LED(PA5)</td><td>깜빡이지 않음(꺼져 있음)</td><td class="blank"></td></tr>
+<tr><td>6초 누르고 있기</td><td>한 번만 바뀜</td><td class="blank"></td></tr>
+<tr><td>쓴 저항 값과 LED 색</td><td>330 Ω에 적색이면 약 4 mA</td><td class="blank"></td></tr>
+</table>
+<p>외부 LED가 안 켜지면: LED 방향 → 꽂은 헤더 핀 → 매크로가 1인지 → F5로 다시 내려받았는지 순서로 본다. 과제1과 과제2는 <b>각각</b> 영상으로 남긴다.</p>
+
+<h2>4. FPGA 진행</h2>
+<p>두 설계 모두 클록이 없는 조합회로다. 스위치를 바꾸면 LED가 바로 바뀐다. 입력은 버스 스위치 8개, 출력은 LED 8개다.</p>
+
+<h3>4.1 시뮬레이션(맥, Icarus)</h3>
+<pre><code>cd lab4/lab4_01_mult_4bit
+python3 tools/fpga_lab.py simulate     # 256개 입력 전수 검사
+# 예상 출력: PASS multiplier: 256 input pairs
+
+mkdir -p build
+iverilog -g2012 -o build/view.vvp src/*.v sim/tb_view.sv &amp;&amp; vvp build/view.vvp
+# 예상 출력: PASS multiplier view: 12 directed pairs</code></pre>
+<p><code>lab4_02_bcd_conv</code>에서도 같은 명령을 쓴다. 예상 출력은 <code>PASS BCD: 100 valid and 156 invalid inputs</code>와 <code>PASS BCD view: 12 directed inputs</code>다.
+<code>SIMULATED</code>는 실행이 끝났다는 뜻이고, 정답 여부는 <code>PASS</code> 줄로 본다.</p>
+
+<h3>4.2 Vivado 2026.1에서 비트스트림 만들기</h3>
+<p>저장소의 <code>bitstream/*.bit</code>는 Vivado 2025.2로 만든 것이다. <b>핀이 교재와 같다면 그대로 내려받아도 된다.</b> XDC를 고쳤거나 2026.1로 다시 만들고 싶으면 아래를 실행한다.</p>
+<pre><code>cd lab4/lab4_01_mult_4bit
+vivado -mode batch -source tools/build_bitstream.tcl -log tools/build_bitstream.log -nojournal
+# 끝에 BITSTREAM_DONE 줄이 나오면 성공. bitstream/mult_4bit.bit가 새로 만들어진다.</code></pre>
+<p>이 스크립트는 <code>vivado/</code>에 프로젝트를 새로 만들고 합성·구현·비트스트림 생성까지 한 뒤 <code>evidence/vivado/</code>의 보고서 4개를 덮어쓴다.
+GUI로 보려면 Vivado에서 <code>vivado/lab4_01_mult_4bit.xpr</code>을 연다. 시뮬레이션은 <b>Run Simulation → Run Behavioral Simulation</b>이고, 파형용 TB로 바꾸려면 Tcl Console에 <code>set_property top tb_view [get_filesets sim_1]</code>을 입력한다.</p>
+
+<h3>4.3 보드에 내려받기</h3>
+<ol>
+<li>보드 전원을 켜고 JTAG 케이블을 연결한다.</li>
+<li><b>Open Hardware Manager → Open target → Auto Connect</b>.</li>
+<li><b>Program device</b>에서 <code>bitstream/mult_4bit.bit</code>(또는 <code>bcd_conv.bit</code>)를 고르고 Program.</li>
+</ol>
+<p>Tcl로 하려면 Vivado Tcl Console에서:</p>
+<pre><code>open_hw_manager; connect_hw_server; open_hw_target
+set d [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {bitstream/mult_4bit.bit} $d
+program_hw_devices $d</code></pre>
+
+<h3>4.4 핀 — 실험 전에 반드시 대조</h3>
+<p>수업 자료에는 XDC가 없어서 LAB1의 4비트 가산기 스위치 핀과 LAB3의 LED 핀을 그대로 썼다. <b>교재의 곱셈기·BCD 변환 실습 핀 표와 다르면 XDC를 고치고 4.2절로 비트스트림을 다시 만든다.</b></p>
+<table>
+<tr><th style="width:26mm">신호</th><th class="c">[3]</th><th class="c">[2]</th><th class="c">[1]</th><th class="c">[0]</th><th>곱셈기</th><th>BCD 변환</th></tr>
+<tr><td>스위치 묶음 1</td><td class="c m">Y1</td><td class="c m">W3</td><td class="c m">U2</td><td class="c m">T1</td><td><code>a[3:0]</code></td><td><code>ten[3:0]</code>(십의 자리)</td></tr>
+<tr><td>스위치 묶음 2</td><td class="c m">W4</td><td class="c m">W1</td><td class="c m">V4</td><td class="c m">U4</td><td><code>b[3:0]</code></td><td><code>one[3:0]</code>(일의 자리)</td></tr>
+</table>
+<table>
+<tr><th style="width:26mm">LED 핀</th><th class="c m">L4</th><th class="c m">M4</th><th class="c m">M2</th><th class="c m">N7</th><th class="c m">M7</th><th class="c m">M3</th><th class="c m">M1</th><th class="c m">N5</th></tr>
+<tr><td>곱셈기</td><td class="c">m[7]</td><td class="c">m[6]</td><td class="c">m[5]</td><td class="c">m[4]</td><td class="c">m[3]</td><td class="c">m[2]</td><td class="c">m[1]</td><td class="c">m[0]</td></tr>
+<tr><td>BCD 변환</td><td class="c"><b>valid</b></td><td class="c">bin[6]</td><td class="c">bin[5]</td><td class="c">bin[4]</td><td class="c">bin[3]</td><td class="c">bin[2]</td><td class="c">bin[1]</td><td class="c">bin[0]</td></tr>
+</table>
+<p>내려받은 뒤 먼저 <b>스위치를 하나씩만 올려</b> 어느 스위치가 어느 비트인지 확인한다. 곱셈기에서 <code>b=1</code>로 두고 <code>a</code>의 스위치를 하나씩 올리면 같은 자리의 LED가 켜져야 한다. 순서가 뒤집혀 있으면 XDC의 핀 순서가 보드와 반대다.</p>
+
+<h3>4.5 시연 ① 4비트 곱셈기</h3>
+<p>파형용 TB(<code>sim/tb_view.sv</code>)와 같은 입력 12개다. LED 열은 m[7]…m[0] 순서이고 1이 켜짐이다.</p>
+<table class="long">
+<tr><th class="c">a</th><th class="c">b</th><th class="c">a (2진)</th><th class="c">b (2진)</th><th class="c">m</th><th class="c">LED m[7:0]</th><th>보는 이유</th><th style="width:24mm">실제 LED</th></tr>
+<tr><td class="c">0</td><td class="c">0</td><td class="c m">0000</td><td class="c m">0000</td><td class="c">0</td><td class="c m">0000 0000</td><td>모두 꺼짐</td><td></td></tr>
+<tr><td class="c">0</td><td class="c">15</td><td class="c m">0000</td><td class="c m">1111</td><td class="c">0</td><td class="c m">0000 0000</td><td>0을 곱하면 0</td><td></td></tr>
+<tr><td class="c">1</td><td class="c">9</td><td class="c m">0001</td><td class="c m">1001</td><td class="c">9</td><td class="c m">0000 1001</td><td>1을 곱하면 그대로</td><td></td></tr>
+<tr><td class="c">2</td><td class="c">8</td><td class="c m">0010</td><td class="c m">1000</td><td class="c">16</td><td class="c m">0001 0000</td><td>2의 거듭제곱 = 자리 이동</td><td></td></tr>
+<tr><td class="c">3</td><td class="c">5</td><td class="c m">0011</td><td class="c m">0101</td><td class="c">15</td><td class="c m">0000 1111</td><td rowspan="2">순서를 바꿔도 같은 값</td><td></td></tr>
+<tr><td class="c">5</td><td class="c">3</td><td class="c m">0101</td><td class="c m">0011</td><td class="c">15</td><td class="c m">0000 1111</td><td></td></tr>
+<tr><td class="c">7</td><td class="c">7</td><td class="c m">0111</td><td class="c m">0111</td><td class="c">49</td><td class="c m">0011 0001</td><td>부분곱이 여러 개 겹침</td><td></td></tr>
+<tr><td class="c">8</td><td class="c">8</td><td class="c m">1000</td><td class="c m">1000</td><td class="c">64</td><td class="c m">0100 0000</td><td>m[6]만 켜짐</td><td></td></tr>
+<tr><td class="c">9</td><td class="c">9</td><td class="c m">1001</td><td class="c m">1001</td><td class="c">81</td><td class="c m">0101 0001</td><td></td><td></td></tr>
+<tr><td class="c">12</td><td class="c">10</td><td class="c m">1100</td><td class="c m">1010</td><td class="c">120</td><td class="c m">0111 1000</td><td></td><td></td></tr>
+<tr><td class="c">15</td><td class="c">1</td><td class="c m">1111</td><td class="c m">0001</td><td class="c">15</td><td class="c m">0000 1111</td><td></td><td></td></tr>
+<tr><td class="c">15</td><td class="c">15</td><td class="c m">1111</td><td class="c m">1111</td><td class="c">225</td><td class="c m">1110 0001</td><td>최댓값. m[7]이 켜지는 유일한 예</td><td></td></tr>
+</table>
+<figure><img src="../report/pre/images/vivado/01_mult_view.png" style="width:165mm"><figcaption>Vivado 2025.2 시뮬레이터에서 본 같은 입력 12개. 보드의 LED를 이 값과 비교한다.</figcaption></figure>
+
+<h3>4.6 시연 ② BCD → 이진수</h3>
+<p>십의 자리(<code>ten</code>)와 일의 자리(<code>one</code>)를 각각 4비트로 넣으면 <code>bin = ten×10 + one</code>이 7비트로 나온다. 두 자리 모두 0~9일 때만 <code>valid</code>가 1이다.</p>
+<table class="long">
+<tr><th class="c">ten</th><th class="c">one</th><th class="c">ten (2진)</th><th class="c">one (2진)</th><th class="c">bin</th><th class="c">LED bin[6:0]</th><th class="c">valid</th><th>보는 이유</th><th style="width:22mm">실제 LED</th></tr>
+<tr><td class="c">0</td><td class="c">0</td><td class="c m">0000</td><td class="c m">0000</td><td class="c">0</td><td class="c m">000 0000</td><td class="c">1</td><td>valid만 켜짐</td><td></td></tr>
+<tr><td class="c">0</td><td class="c">9</td><td class="c m">0000</td><td class="c m">1001</td><td class="c">9</td><td class="c m">000 1001</td><td class="c">1</td><td rowspan="2">9와 10: BCD와 이진수가 갈라지는 곳</td><td></td></tr>
+<tr><td class="c">1</td><td class="c">0</td><td class="c m">0001</td><td class="c m">0000</td><td class="c">10</td><td class="c m">000 1010</td><td class="c">1</td><td></td></tr>
+<tr><td class="c">2</td><td class="c">5</td><td class="c m">0010</td><td class="c m">0101</td><td class="c">25</td><td class="c m">001 1001</td><td class="c">1</td><td></td><td></td></tr>
+<tr><td class="c">4</td><td class="c">2</td><td class="c m">0100</td><td class="c m">0010</td><td class="c">42</td><td class="c m">010 1010</td><td class="c">1</td><td></td><td></td></tr>
+<tr><td class="c">6</td><td class="c">4</td><td class="c m">0110</td><td class="c m">0100</td><td class="c">64</td><td class="c m">100 0000</td><td class="c">1</td><td>bin[6]만 켜짐</td><td></td></tr>
+<tr><td class="c">9</td><td class="c">0</td><td class="c m">1001</td><td class="c m">0000</td><td class="c">90</td><td class="c m">101 1010</td><td class="c">1</td><td></td><td></td></tr>
+<tr><td class="c">9</td><td class="c">9</td><td class="c m">1001</td><td class="c m">1001</td><td class="c">99</td><td class="c m">110 0011</td><td class="c">1</td><td>유효한 최댓값</td><td></td></tr>
+<tr><td class="c">10</td><td class="c">0</td><td class="c m">1010</td><td class="c m">0000</td><td class="c">100</td><td class="c m">110 0100</td><td class="c">0</td><td rowspan="2">한 자리만 범위 밖. valid가 꺼짐</td><td></td></tr>
+<tr><td class="c">0</td><td class="c">10</td><td class="c m">0000</td><td class="c m">1010</td><td class="c">10</td><td class="c m">000 1010</td><td class="c">0</td><td></td></tr>
+<tr><td class="c">12</td><td class="c">7</td><td class="c m">1100</td><td class="c m">0111</td><td class="c">127</td><td class="c m">111 1111</td><td class="c">0</td><td>7비트가 모두 켜짐</td><td></td></tr>
+<tr><td class="c">15</td><td class="c">15</td><td class="c m">1111</td><td class="c m">1111</td><td class="c">37</td><td class="c m">010 0101</td><td class="c">0</td><td>165가 7비트를 넘어 165−128=37</td><td></td></tr>
+</table>
+<p>범위 밖 입력에서도 <code>bin</code>은 계산된 값이 그대로 나온다. 꺼지는 것은 <code>valid</code>뿐이다. 마지막 줄처럼 7비트를 넘으면 위쪽 비트가 잘린다.</p>
+<figure><img src="../report/pre/images/vivado/02_bcd_view.png" style="width:165mm"><figcaption>Vivado 2025.2 시뮬레이터에서 본 같은 입력 12개</figcaption></figure>
+
+<h2 class="pb">5. 관련 개념</h2>
+<h3>5.1 STM32</h3>
+<h4>C 코드가 보드에서 실행되기까지</h4>
+<p>C 소스를 컴파일·링크하면 기계어와 디버깅 정보가 든 ELF 파일이 나온다. F5를 누르면 ST-LINK가 SWD 선(PA13, PA14)으로 ELF의 프로그램 부분을 STM32의 Flash에 기록한다. 리셋 뒤에는 시작 코드가 돌고 <code>main()</code>으로 들어간다. 운영체제가 없어서 우리 프로그램이 곧바로 실행된다. 그래서 Build만으로는 보드가 바뀌지 않는다.</p>
+<h4>주변장치와 HAL</h4>
+<p>MCU는 CPU(Cortex-M4), Flash, SRAM, 주변장치를 한 칩에 모은 것이다. 핀의 전압은 CPU가 직접 바꾸지 않고 GPIO 주변장치의 레지스터가 정한다. <code>HAL_GPIO_WritePin()</code>은 그 레지스터에 값을 쓰는 함수다. 어느 핀이 입력이고 출력인지는 CubeMX가 <code>.ioc</code> 설정에서 만든 초기화 코드가 정한다. FPGA의 XDC와 같은 역할이지만 MCU에는 XDC가 없다.</p>
+<table>
+<tr><th style="width:62mm">함수</th><th>하는 일</th></tr>
+<tr><td><code>HAL_GPIO_ReadPin(포트, 핀)</code></td><td>지금 핀이 HIGH(<code>GPIO_PIN_SET</code>)인지 LOW(<code>GPIO_PIN_RESET</code>)인지 읽는다.</td></tr>
+<tr><td><code>HAL_GPIO_WritePin(포트, 핀, 상태)</code></td><td>출력을 정한 상태로 만든다. 같은 값을 여러 번 써도 결과는 같다.</td></tr>
+<tr><td><code>HAL_GPIO_TogglePin(포트, 핀)</code></td><td>부를 때마다 출력을 반대로 바꾼다.</td></tr>
+<tr><td><code>HAL_GetTick()</code></td><td>전원이 들어온 뒤 지난 시간을 ms 단위 <code>uint32_t</code>로 돌려준다. 1 ms마다 타이머 인터럽트가 값을 1 올린다.</td></tr>
+</table>
+<h4>폴링</h4>
+<p><code>main()</code>의 무한 루프가 <code>polling_routine()</code>을 쉬지 않고 부른다. 함수는 부를 때마다 "버튼이 눌렸나, 시간이 됐나"를 물어보고 곧바로 돌아온다. 이렇게 프로그램이 직접 상태를 반복해서 확인하는 방식이 폴링이다. 다음 주에는 같은 과제를 인터럽트(일이 생겼을 때 하드웨어가 함수를 부르는 방식)로 다시 만든다. 오늘 본 동작과 비교하게 되니 간격과 버튼 반응을 잘 적어 둔다.</p>
+<h4>기다리지 않고 시간 재기</h4>
+<p><code>HAL_Delay(1000)</code>처럼 멈춰서 기다리면 그 1초 동안 버튼을 읽지 못한다. 그래서 "지금 시각 − 마지막으로 바꾼 시각 ≥ 간격"인지만 확인하고 바로 돌아온다. 버튼 확인과 LED 점멸이 한 루프 안에서 같이 돌아가는 이유다.</p>
+<p><code>now_ms - last_ms</code>는 부호 없는 32비트 뺄셈이다. 틱 값은 약 49.7일 뒤 0으로 돌아가는데, 그때도 뺄셈 결과는 지난 시간이 그대로 나온다. <code>now_ms &gt;= last_ms + 간격</code>으로 쓰면 그 순간에 틀린다.</p>
+<h4><code>static</code> 지역 변수</h4>
+<p>함수 안의 보통 변수는 함수가 끝나면 사라진다. <code>static</code>을 붙이면 다음 호출에서도 값이 남는다. 이전 버튼 상태, 마지막 변경 시각, 현재 간격을 기억하는 데 쓴다. 초기값은 처음 한 번만 들어간다.</p>
+<h4>에지 검출과 떨림</h4>
+<p>"지금 HIGH이고 직전에는 LOW"인 순간이 누른 순간(상승 에지)이다. 이 조건이 있어서 누르고 있는 동안에는 다시 반응하지 않는다. 이 보드의 B1 버튼은 누르면 PC13이 HIGH가 된다.</p>
+<p>기계식 버튼은 접점이 붙거나 떨어질 때 수 ms 동안 HIGH와 LOW를 오간다. 이것이 떨림(bounce)이다. 루프가 매우 빨라서 이 떨림을 여러 번의 누름으로 읽을 수 있다. 제공 코드는 한 번 인정한 뒤 200 ms 동안 새 누름을 무시해서 누를 때의 떨림을 막는다. 떼는 순간의 떨림은 누른 지 200 ms가 지난 뒤라면 막지 못한다(3.3절의 주의).</p>
+<h4>외부 LED와 저항</h4>
+<p>GPIO 출력이 HIGH면 약 3.3 V가 나온다. LED는 전류가 흐르는 방향이 정해져 있어 긴 다리(+)가 핀 쪽, 짧은 다리(−)가 GND 쪽이다. 저항이 없으면 전류가 지나치게 흐른다. 전류는 (3.3 V − LED 전압) ÷ 저항이고, 적색 LED(약 2 V)에 330 Ω이면 약 4 mA, 1 kΩ이면 약 1.3 mA다. 저항이 클수록 어둡다.</p>
+
+<h3>5.2 FPGA</h3>
+<h4>조합회로</h4>
+<p>출력이 지금의 입력만으로 정해지는 회로다. 클록도 기억도 없다. 그래서 두 설계에는 클록 핀과 클록 제약이 없고, 스위치를 바꾸면 LED가 곧바로 따라온다. 입력에서 출력까지 걸리는 시간(전파 지연)은 있다. 구현 결과에서 가장 긴 경로는 곱셈기 12.1 ns, BCD 변환 11.2 ns였고 대부분 입출력 핀의 지연이다. 눈으로는 알 수 없는 크기다.</p>
+<h4>4비트 곱셈기</h4>
+<p>4비트 두 수의 곱은 최대 15×15 = 225라서 8비트가 필요하다. 손으로 하는 곱셈처럼 <code>b</code>의 각 비트에 <code>a</code>를 곱한 부분곱 4줄을 한 자리씩 밀어 더한다. 한 비트끼리의 곱은 AND다. Verilog에서는 <code>assign product = a * b;</code> 한 줄이고 합성기가 이것을 LUT로 바꾼다(구현 결과 16개).</p>
+<pre><code>      1 1 0 1      a = 13
+    × 1 0 1 1      b = 11
+    ---------
+      1 1 0 1      a × b[0]
+    1 1 0 1        a × b[1], 한 자리 왼쪽
+  0 0 0 0          a × b[2]
+1 1 0 1            a × b[3]
+---------------
+1 0 0 0 1 1 1 1    = 143</code></pre>
+<h4>BCD → 이진수</h4>
+<p>BCD는 십진수의 각 자리를 4비트로 따로 적는 방법이다. 42는 BCD로 <code>0100 0010</code>, 이진수로는 <code>010 1010</code>이다. 변환은 <code>ten × 10 + one</code>이고, ×10은 ×8과 ×2를 더한 것(왼쪽으로 3칸, 1칸 민 값의 합)과 같다. 최댓값 99는 7비트에 들어간다.
+4비트로는 10~15도 넣을 수 있지만 BCD에서는 쓰지 않는 값이다. 그래서 두 자리가 모두 9 이하일 때만 <code>valid</code>를 1로 낸다. 구현 결과 LUT 7개를 썼다.</p>
+<h4>시뮬레이션, 합성, 구현</h4>
+<table>
+<tr><th style="width:34mm">단계</th><th>하는 일</th><th style="width:62mm">이번 실험에서 볼 것</th></tr>
+<tr><td>기능 시뮬레이션</td><td>TB가 입력을 넣고 출력을 기대값과 비교한다. XDC는 쓰지 않는다.</td><td>PASS 줄, 파형의 값</td></tr>
+<tr><td>합성</td><td>Verilog를 LUT 같은 FPGA 소자로 바꾼다.</td><td>LUT 수(16, 7)</td></tr>
+<tr><td>구현</td><td>소자를 칩 안에 배치하고 배선한다. XDC의 핀이 여기서 쓰인다.</td><td>DRC 오류 0, 핀 배치</td></tr>
+<tr><td>비트스트림</td><td>칩에 내려받을 설정 파일(.bit)을 만든다.</td><td>보드의 실제 LED</td></tr>
+</table>
+<p>시뮬레이션이 통과해도 핀이 틀리면 보드에서는 틀리게 보인다. 보드 시연이 따로 필요한 이유다.</p>
+
+<h2 class="pb">6. 결과보고서를 위해 남길 것</h2>
+<p>보고서 요령: 예상과 실제 결과 비교, 문제 해결 과정, 결론, 저장소 주소·태그·커밋 해시, 소스와 시연 자료 링크.</p>
+<h3>6.1 찍을 것</h3>
+<ul class="cb">
+<li>예제 1: LED 점멸 영상 10초 이상</li>
+<li>예제 2: 짧게 누르기 몇 번과 길게 누르기가 함께 나오는 영상</li>
+<li>과제1: 리셋부터 1→2→4→8→1초를 한 바퀴 도는 영상(버튼 누르는 손이 보이게, 1분쯤)</li>
+<li>과제1: 6초 누르고 있기 영상</li>
+<li>과제1: 길게 눌렀다 떼기 10번 영상(떨림 확인)</li>
+<li>과제2: 결선 사진(저항·LED 방향·꽂은 핀이 보이게)과 한 바퀴 도는 영상</li>
+<li>곱셈기: 입력 12개 중 대표 몇 개의 스위치·LED 사진, 전체를 훑는 영상</li>
+<li>BCD 변환: 유효 입력과 범위 밖 입력의 스위치·LED 사진, 영상</li>
+<li>Vivado 2026.1에서 다시 만들었다면 시뮬레이션 파형과 Program 성공 화면 캡처</li>
+</ul>
+<h3>6.2 적을 것</h3>
+<table>
+<tr><th style="width:62mm">항목</th><th>예상(예비보고서)</th><th style="width:50mm">실제</th></tr>
+<tr><td>간격 측정값 1 / 2 / 4 / 8초</td><td>각 간격과 같음</td><td class="blank"></td></tr>
+<tr><td>누른 뒤 첫 변화까지 걸린 시간</td><td>마지막 변화 + 새 간격</td><td class="blank"></td></tr>
+<tr><td>8→1초에서 바로 바뀌는지</td><td>1초 넘게 지났으면 즉시</td><td class="blank"></td></tr>
+<tr><td>길게 눌렀다 떼기 10번 중 건너뛴 횟수</td><td>모델은 떨림이 있으면 건너뜀</td><td class="blank"></td></tr>
+<tr><td>대비 코드로 바꿨는지, 바꾼 뒤 횟수</td><td>0번</td><td class="blank"></td></tr>
+<tr><td>외부 LED 저항 값, 쓴 핀</td><td>330 Ω~1 kΩ, PB0</td><td class="blank"></td></tr>
+<tr><td>맥에서의 빌드 크기(Flash, RAM)</td><td>25,848 B, 2,656 B (GCC 13.3)</td><td class="blank"></td></tr>
+<tr><td>곱셈기 12개 중 일치한 수</td><td>12</td><td class="blank"></td></tr>
+<tr><td>BCD 12개 중 일치한 수</td><td>12</td><td class="blank"></td></tr>
+<tr><td>교재 핀 표와 XDC가 달랐던 곳</td><td>없기를 기대</td><td class="blank"></td></tr>
+<tr><td>2026.1로 다시 만든 경우 LUT 수</td><td>16, 7 (2025.2)</td><td class="blank"></td></tr>
+<tr><td>막혔던 일과 해결 방법</td><td>—</td><td class="blank"></td></tr>
+</table>
+
+<h3>6.3 끝나고 할 일</h3>
+<pre><code>cd ~/UOS_ece2
+git status                       # 바뀐 파일 확인
+git add lab4
+git commit -m "lab4: 실험 결과 반영"
+git tag lab4-final               # 결과보고서에 적을 태그(LAB3은 lab3-final)
+git push origin master --tags
+git rev-parse HEAD               # 보고서에 적을 커밋 해시</code></pre>
+<p>영상은 용량이 크면 저장소 대신 링크로 올리고 보고서에 주소를 적는다.</p>
+
+<h2>7. 안 될 때</h2>
+<table class="long">
+<tr><th style="width:56mm">증상</th><th>볼 곳</th></tr>
+<tr><td>ST-LINK를 못 찾음</td><td>JP5가 5V_STLK인지, 케이블이 충전 전용이 아닌지, 어댑터를 바꿔 본다. <code>system_profiler SPUSBDataType | grep -i -A3 st-link</code>로 맥이 장치를 보는지 확인한다.</td></tr>
+<tr><td>ST-LINK 펌웨어 업데이트 요구</td><td>안내대로 업데이트한 뒤 USB를 다시 꽂는다.</td></tr>
+<tr><td>F5 뒤 아무 동작이 없음</td><td><code>main</code>에서 멈춘 상태다. F5를 한 번 더 누른다.</td></tr>
+<tr><td>코드를 바꿨는데 그대로임</td><td>디버깅을 끝내고 F5로 다시 내려받았는지 확인한다.</td></tr>
+<tr><td><code>arm-none-eabi-gcc</code>를 못 찾음(방법 B)</td><td>2.3절의 <code>find</code> 결과가 비었는지 본다. 방법 A의 확장이 받은 컴파일러는 <code>~/Library</code> 아래나 <code>~/.stm32cube</code> 아래에 있을 수 있으니 <code>find ~ -name arm-none-eabi-gcc -type f 2&gt;/dev/null</code>로 찾는다.</td></tr>
+<tr><td>링크 오류 multiple definition of polling_routine</td><td>함수를 교체하지 않고 하나 더 붙여 넣었다. 하나만 남긴다.</td></tr>
+<tr><td>간격이 한 단계 건너뜀</td><td>떼는 순간의 떨림이다. 3.3절의 대비 코드로 바꾼다.</td></tr>
+<tr><td>외부 LED가 안 켜짐</td><td>LED 방향, 꽂은 핀, 매크로 값 1, F5 재실행 순서로 확인한다.</td></tr>
+<tr><td>PC와 글자를 주고받아야 할 때</td><td>이번 주에는 필요 없다. 맥의 포트 이름은 <code>/dev/cu.usbmodem…</code>이고 속도는 9600이다.</td></tr>
+<tr><td>Hardware Manager가 보드를 못 찾음</td><td>보드 전원, JTAG 케이블, (가상 머신이면) USB 연결, 케이블 드라이버를 확인한다.</td></tr>
+<tr><td>LED가 표와 반대로 켜짐</td><td>보드의 LED가 0일 때 켜지는 방식인지 교재에서 확인한다. LAB3에서 같은 핀을 썼으니 그때 기록과 비교한다.</td></tr>
+<tr><td>LED 순서가 뒤집혀 보임</td><td>4.4절의 한 비트씩 확인을 다시 하고 XDC의 핀 순서를 고친 뒤 비트스트림을 다시 만든다.</td></tr>
+<tr><td>Vivado 스크립트가 2026.1에서 실패</td><td>오류 줄을 보고 GUI에서 직접 만든다. New Project → 부품 <code>xc7s75fgga484-1</code> → <code>src/</code>는 Design Sources, <code>sim/</code>은 Simulation Sources, <code>constraints/</code>는 Constraints에 추가(Copy sources 끔) → Generate Bitstream.</td></tr>
+</table>
+
+</body>
+</html>

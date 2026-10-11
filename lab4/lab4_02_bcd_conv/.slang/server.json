@@ -1,0 +1,5 @@
+{
+  "flags": "-y src",
+  "index": [{"dirs": ["src", "sim"], "excludeDirs": ["build", "vivado"]}],
+  "inlayHints": {"orderedInstanceNames": false}
+}

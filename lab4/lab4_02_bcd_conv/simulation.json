@@ -1,0 +1,5 @@
+{
+  "sources": ["src/bcd_to_binary.v", "src/bcd_conv.v"],
+  "testbench": "sim/tb.sv",
+  "simulation_top": "tb"
+}

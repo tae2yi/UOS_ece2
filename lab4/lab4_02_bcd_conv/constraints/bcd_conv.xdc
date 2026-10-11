@@ -1,0 +1,20 @@
+# Combo II-DLD S75. 조합회로이므로 클록 제약이 없다.
+# ten, one: 버스 스위치(LAB1-03의 a, b와 같은 핀). bin[6:0]과 valid: LED 8개(LAB3-01과 같은 핀).
+# 실험 전 교재의 BCD 변환기 핀 표와 대조한다.
+set_property PACKAGE_PIN Y1 [get_ports {ten[3]}]
+set_property PACKAGE_PIN W3 [get_ports {ten[2]}]
+set_property PACKAGE_PIN U2 [get_ports {ten[1]}]
+set_property PACKAGE_PIN T1 [get_ports {ten[0]}]
+set_property PACKAGE_PIN W4 [get_ports {one[3]}]
+set_property PACKAGE_PIN W1 [get_ports {one[2]}]
+set_property PACKAGE_PIN V4 [get_ports {one[1]}]
+set_property PACKAGE_PIN U4 [get_ports {one[0]}]
+set_property PACKAGE_PIN L4 [get_ports valid]
+set_property PACKAGE_PIN M4 [get_ports {bin[6]}]
+set_property PACKAGE_PIN M2 [get_ports {bin[5]}]
+set_property PACKAGE_PIN N7 [get_ports {bin[4]}]
+set_property PACKAGE_PIN M7 [get_ports {bin[3]}]
+set_property PACKAGE_PIN M3 [get_ports {bin[2]}]
+set_property PACKAGE_PIN M1 [get_ports {bin[1]}]
+set_property PACKAGE_PIN N5 [get_ports {bin[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports *]

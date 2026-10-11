@@ -1,0 +1,56 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Oct 11 19:13:58 2026
+| Host         : kdesktop running 64-bit major release  (build 9200)
+| Command      : report_timing -from [all_inputs] -to [all_outputs] -max_paths 1 -file C:/ece2/UOS_ece2/lab4/lab4_01_mult_4bit/evidence/vivado/longest_path.rpt
+| Design       : mult_4bit
+| Device       : 7s75-fgga484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             87.937ns  (required time - arrival time)
+  Source:                 a[0]
+                            (input port)
+  Destination:            m[7]
+  Path Group:             **default**
+  Path Type:              Max at Slow Process Corner
+  Requirement:            100.000ns  (MaxDelay Path 100.000ns)
+  Data Path Delay:        12.063ns  (logic 6.032ns (50.008%)  route 6.030ns (49.992%))
+  Logic Levels:           5  (CARRY4=1 IBUF=1 LUT4=1 LUT5=1 OBUF=1)
+  Output Delay:           0.000ns
+  Timing Exception:       MaxDelay Path 100.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    T1                                                0.000     0.000 r  a[0] (IN)
+                         net (fo=0)                   0.000     0.000    a[0]
+    T1                   IBUF (Prop_ibuf_I_O)         1.496     1.496 r  a_IBUF[0]_inst/O
+                         net (fo=10, routed)          2.640     4.136    u_multiply/a_IBUF[0]
+    SLICE_X84Y98         LUT4 (Prop_lut4_I0_O)        0.150     4.286 r  u_multiply/m_OBUF[7]_inst_i_12/O
+                         net (fo=1, routed)           0.405     4.690    u_multiply/m_OBUF[7]_inst_i_12_n_0
+    SLICE_X85Y99         LUT5 (Prop_lut5_I2_O)        0.328     5.018 r  u_multiply/m_OBUF[7]_inst_i_7/O
+                         net (fo=1, routed)           0.000     5.018    u_multiply/m_OBUF[7]_inst_i_7_n_0
+    SLICE_X85Y99         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     5.550 r  u_multiply/m_OBUF[7]_inst_i_1/CO[3]
+                         net (fo=1, routed)           2.986     8.536    m_OBUF[7]
+    L4                   OBUF (Prop_obuf_I_O)         3.526    12.063 r  m_OBUF[7]_inst/O
+                         net (fo=0)                   0.000    12.063    m[7]
+    L4                                                                r  m[7] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                  100.000   100.000    
+                         clock pessimism              0.000   100.000    
+                         output delay                -0.000   100.000    
+  -------------------------------------------------------------------
+                         required time                        100.000    
+                         arrival time                         -12.063    
+  -------------------------------------------------------------------
+                         slack                                 87.937    
+
+
+
+

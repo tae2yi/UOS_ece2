@@ -1,0 +1,55 @@
+diff --git a/Core/Src/ece2_474_routine.c b/Core/Src/ece2_474_routine.c
+index f06ae0c..c9d6737 100644
+--- a/Core/Src/ece2_474_routine.c
++++ b/Core/Src/ece2_474_routine.c
+@@ -48,10 +48,48 @@ void ece2_474_init(void)
+      */
+ }
+ 
+-/* 메인 루프에서 반복해서 호출됩니다. */
++/* STM32_0 과제1·2: 깜빡일 LED를 한 곳에서 고릅니다.
++ * 0이면 과제1의 내장 LED(PA5), 1이면 과제2의 외부 LED(PB0)입니다.
++ */
++#ifndef STM32_0_USE_EXTERNAL_LED
++#define STM32_0_USE_EXTERNAL_LED 0
++#endif
++
++#if STM32_0_USE_EXTERNAL_LED
++#define BLINK_LED_GPIO_Port GPIO_OUT1_ece2_GPIO_Port
++#define BLINK_LED_Pin GPIO_OUT1_ece2_Pin
++#else
++#define BLINK_LED_GPIO_Port LED_ece2_GPIO_Port
++#define BLINK_LED_Pin LED_ece2_Pin
++#endif
++
++/* 메인 루프에서 반복해서 호출됩니다.
++ * 버튼을 누른 순간마다 LED 상태 변경 간격을 1 -> 2 -> 4 -> 8 -> 1초로 바꿉니다.
++ */
+ void polling_routine(void)
+ {
+-    /* 실습 코드 작성 */
++    static GPIO_PinState previous = GPIO_PIN_RESET;
++    static uint32_t last_press_ms = 0;
++    static uint32_t last_toggle_ms = 0;
++    static uint32_t interval_ms = 1000U;
++    GPIO_PinState current =
++        HAL_GPIO_ReadPin(BUTTON_ece2_GPIO_Port, BUTTON_ece2_Pin);
++    uint32_t now_ms = HAL_GetTick();
++
++    if (current == GPIO_PIN_SET && previous == GPIO_PIN_RESET
++        && now_ms - last_press_ms >= 200U)
++    {
++        last_press_ms = now_ms;
++        interval_ms = (interval_ms >= 8000U)
++                      ? 1000U : interval_ms * 2U;
++    }
++    previous = current;
++
++    if (now_ms - last_toggle_ms >= interval_ms)
++    {
++        last_toggle_ms = now_ms;
++        HAL_GPIO_TogglePin(BLINK_LED_GPIO_Port, BLINK_LED_Pin);
++    }
+ }
+ 
+ /* 1. 사용자 버튼 PC13을 눌렀을 때 호출됩니다. 우선순위: 7.

@@ -1,0 +1,3 @@
+PASS BCD: 100 valid and 156 invalid inputs
+$finish called at time : 256 ns : File "tb.sv" Line 16
+INFO: [Common 17-206] Exiting xsim at Sun Oct 11 19:12:32 2026...

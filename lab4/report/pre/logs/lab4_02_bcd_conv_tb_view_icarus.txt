@@ -1,0 +1,2 @@
+PASS BCD view: 12 directed inputs
+sim/tb_view.sv:22: $finish called at 120000 (1ps)

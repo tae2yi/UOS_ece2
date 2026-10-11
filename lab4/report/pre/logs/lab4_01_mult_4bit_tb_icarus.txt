@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+PASS multiplier: 256 input pairs
+C:\ece2\UOS_ece2\lab4\lab4_01_mult_4bit\sim\tb.sv:14: $finish called at 256000 (1ps)

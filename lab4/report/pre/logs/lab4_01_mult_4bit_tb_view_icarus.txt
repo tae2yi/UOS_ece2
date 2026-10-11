@@ -1,0 +1,2 @@
+PASS multiplier view: 12 directed pairs
+sim/tb_view.sv:20: $finish called at 120000 (1ps)

@@ -1,0 +1,10 @@
+results/example1_idle.csv 7 lines
+results/example2_taps.csv 11 lines
+results/task1_cycle.csv 29 lines
+results/task1_hold.csv 11 lines
+results/task1_bounce.csv 51 lines
+results/task1_wrap.csv 30 lines
+results/task2_cycle.csv 29 lines
+results/guard_cycle.csv 29 lines
+results/guard_hold.csv 11 lines
+results/guard_bounce.csv 53 lines

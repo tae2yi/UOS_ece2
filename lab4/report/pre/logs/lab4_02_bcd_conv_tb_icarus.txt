@@ -1,0 +1,3 @@
+VCD info: dumpfile wave.vcd opened for output.
+PASS BCD: 100 valid and 156 invalid inputs
+C:\ece2\UOS_ece2\lab4\lab4_02_bcd_conv\sim\tb.sv:16: $finish called at 256000 (1ps)
