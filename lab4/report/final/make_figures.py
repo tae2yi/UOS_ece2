@@ -196,18 +196,31 @@ def pulses(click_pairs):
     return pts
 
 
-def plot_stm(on, click_pairs, led_label, out, with_model):
+def with_halts(pts, halts):
+    """tick 시각의 점열을 영상 시각으로 옮긴다. halts: [(멈춘 tick ms, 멈춘 길이 ms)] — 디버거가 코어를 세운 구간."""
+    return [(t + sum(h for at, h in halts if t > at), v) for t, v in pts]
+
+
+def plot_stm(on, click_pairs, led_label, out, halts=()):
+    """halts: [(누른 영상 시각 s, 멈춘 길이 s)]. 멈춘 동안에는 HAL tick도 서므로 계산은 tick 시각에서 한다."""
     end = len(on) / FPS * 1000
     led = [(0.0, int(on[0]))] + [(t * 1000, v) for t, v in edges(on)]
     rows = [('BUTTON\n클릭음', pulses(click_pairs), RED), (led_label + '\n측정', led, NAVY)]
     ts = [t for t, _ in led[1:]]
     spans = [(a, b, f'{(b - a) / 1000:.2f} s', 1) for a, b in zip(ts, ts[1:])]
-    if with_model:
-        first = led[1]
-        rows.append((led_label + '\n계산', [(0.0, 1 - first[1])] + model(first[0], first[1], 1000,
-                                                                      [a * 1000 for a, _ in click_pairs], end), GREEN))
-    im = timing(rows, 0, end, 2, spans,
-                notes=['누름·뗌 클릭음: ' + ', '.join(f'{a:.2f}·{b:.2f} s' for a, b in click_pairs)])
+    first, shift, tick_halts, presses = led[1], 0.0, [], []
+    for a, _ in click_pairs:                           # 누른 영상 시각 -> tick 시각
+        presses.append(a * 1000 - shift)
+        h = sum(d for at, d in halts if at == a) * 1000
+        if h:
+            tick_halts.append((presses[-1], h))
+            shift += h
+    calc = model(first[0], first[1], 1000, presses, end - shift)
+    rows.append((led_label + '\n계산', [(0.0, 1 - first[1])] + with_halts(calc, tick_halts), GREEN))
+    notes = ['누름·뗌 클릭음: ' + ', '.join(f'{a:.2f}·{b:.2f} s' for a, b in click_pairs)]
+    if halts:
+        notes.append('계산: 누를 때마다 중단점에서 ' + ', '.join(f'{d:.2f} s' for _, d in halts) + ' 멈춘 것으로 둠')
+    im = timing(rows, 0, end, 2, spans, notes=notes)
     (IMG / 'meas').mkdir(parents=True, exist_ok=True)
     im.save(IMG / 'meas' / out)
     print(IMG / 'meas' / out)
@@ -224,8 +237,10 @@ def main():
     write_csv('stm32_task1_led.csv', on1, c1)
     write_csv('stm32_task2_led.csv', on2, c2)
     # 클릭음 가운데 손가락이 버튼 위에 있던 구간의 누름·뗌 쌍(영상으로 확인)
-    plot_stm(on1, [(1.70, 1.86), (9.70, 9.89)], 'LED\nPA5', 'stm_task1_timing.png', with_model=False)
-    plot_stm(on2, [(3.44, 3.65), (8.08, 8.30)], '외부 LED\nPB0', 'stm_task2_timing.png', with_model=True)
+    # 과제1은 디버그 모드로 연결하고 누름 처리 안에 중단점을 둔 채 찍었다. 멈춘 길이는 측정한 변화 시각에서 구했다.
+    plot_stm(on1, [(1.70, 1.86), (9.70, 9.89)], 'LED\nPA5', 'stm_task1_timing.png',
+             halts=[(1.70, 2.80), (9.70, 2.833)])
+    plot_stm(on2, [(3.44, 3.65), (8.08, 8.30)], '외부 LED\nPB0', 'stm_task2_timing.png')
 
 
 if __name__ == '__main__':
