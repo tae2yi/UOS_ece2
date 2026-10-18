@@ -1,0 +1,28 @@
+### task3: cmake --preset Debug && cmake --build --preset Debug
+[2/2] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2656 B       128 KB      2.03%
+           FLASH:       26008 B       512 KB      4.96%
+
+### task4: cmake -S . -B build/Task4 -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS=-DSTM32_1_TASK=4
+[2/2] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2648 B       128 KB      2.02%
+           FLASH:       26324 B       512 KB      5.02%
+### nm build/Debug
+2000000c 00000004 d blink_ticks
+2000030c 00000004 b count.0
+20000308 00000004 b last_ms.1
+08005784 00000014 T ece2_474_init
+0800587c 00000024 T HAL_TIM_PeriodElapsedCallback
+08005844 00000036 T HAL_GPIO_EXTI_Callback
+080057f0 00000038 t tim6_isr_p4
+080057a8 00000048 t button_isr_p7
+### nm build/Task4
+20000308 00000004 b last_ms.0
+2000000c 00000004 d pwm_compare
+08005958 0000000e t tim6_isr_p4
+080058cc 00000024 T ece2_474_init
+080059b8 00000024 T HAL_TIM_PeriodElapsedCallback
+08005982 00000036 T HAL_GPIO_EXTI_Callback
+08005900 00000058 t button_isr_p7

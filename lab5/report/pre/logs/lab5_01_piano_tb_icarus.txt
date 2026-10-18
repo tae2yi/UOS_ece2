@@ -1,0 +1,2 @@
+PASS piano: all 8 tones, silence, multiple keys, reset
+sim/tb.sv:38: $finish called at 4796000 (1ps)

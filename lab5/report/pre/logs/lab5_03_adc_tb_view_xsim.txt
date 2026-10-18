@@ -1,0 +1,3 @@
+PASS ADC view: command ab70, sample 5c3, led 5c
+$finish called at time : 800 ns : File "tb_view.sv" Line 32
+xsim% INFO: [Common 17-206] Exiting xsim at Fri Oct 16 23:10:15 2026...

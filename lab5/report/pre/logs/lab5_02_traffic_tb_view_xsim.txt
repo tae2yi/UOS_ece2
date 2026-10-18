@@ -1,0 +1,3 @@
+PASS traffic view: direction 0 cycle, direction 1 start, flicker
+$finish called at time : 820 ns : File "tb_view.sv" Line 22
+xsim% INFO: [Common 17-206] Exiting xsim at Fri Oct 16 23:10:06 2026...

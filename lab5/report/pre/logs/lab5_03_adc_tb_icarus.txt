@@ -1,0 +1,2 @@
+PASS ADC: 3 serial frames, command bits, sample, reset
+sim/tb.sv:44: $finish called at 2016000 (1ps)

@@ -1,0 +1,3 @@
+PASS piano view: 262/330/523 Hz tones, 6 rising edges
+$finish called at time : 2270 ns : File "tb_view.sv" Line 24
+INFO: [Common 17-206] Exiting xsim at Fri Oct 16 23:51:33 2026...

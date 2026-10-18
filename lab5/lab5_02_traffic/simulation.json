@@ -1,0 +1,1 @@
+{"sources": ["src/second_tick.v", "src/traffic_lights.v", "src/traffic_sequence.v", "src/traffic.v"], "testbench": "sim/tb.sv", "simulation_top": "tb"}

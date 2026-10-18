@@ -1,0 +1,2 @@
+PASS piano view: 262/330/523 Hz tones, 6 rising edges
+sim/tb_view.sv:24: $finish called at 2270000 (1ps)

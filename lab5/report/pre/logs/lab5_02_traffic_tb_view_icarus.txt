@@ -1,0 +1,2 @@
+PASS traffic view: direction 0 cycle, direction 1 start, flicker
+sim/tb_view.sv:22: $finish called at 820000 (1ps)

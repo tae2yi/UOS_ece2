@@ -1,0 +1,2 @@
+PASS ADC view: command ab70, sample 5c3, led 5c
+sim/tb_view.sv:32: $finish called at 800000 (1ps)
