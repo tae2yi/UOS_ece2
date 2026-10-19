@@ -1,10 +1,10 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Oct 16 23:43:43 2026
+| Date         : Mon Oct 19 14:39:17 2026
 | Host         : kdesktop running 64-bit major release  (build 9200)
 | Command      : report_utilization -file C:/ece2/UOS_ece2/lab5/report/pre/logs/lab5_03_adc_utilization_synth.rpt
-| Design       : adc
+| Design       : adc_board
 | Device       : xc7s75fgga484-1
 | Speed File   : -1
 | Design State : Synthesized
@@ -34,8 +34,8 @@ Table of Contents
 | Slice LUTs*             |   60 |     0 |          0 |     48000 |  0.13 |
 |   LUT as Logic          |   60 |     0 |          0 |     48000 |  0.13 |
 |   LUT as Memory         |    0 |     0 |          0 |     17600 |  0.00 |
-| Slice Registers         |   72 |     0 |          0 |     96000 |  0.08 |
-|   Register as Flip Flop |   72 |     0 |          0 |     96000 |  0.08 |
+| Slice Registers         |   67 |     0 |          0 |     96000 |  0.07 |
+|   Register as Flip Flop |   67 |     0 |          0 |     96000 |  0.07 |
 |   Register as Latch     |    0 |     0 |          0 |     96000 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     32000 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |     16000 |  0.00 |
@@ -62,7 +62,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 6     |          Yes |         Set |            - |
-| 66    |          Yes |       Reset |            - |
+| 61    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -95,7 +95,9 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   30 |     0 |          0 |       338 |  8.88 |
+| Bonded IOB                  |   17 |    17 |          0 |       338 |  5.03 |
+|   IOB Master Pads           |    7 |       |            |           |       |
+|   IOB Slave Pads            |    9 |       |            |           |       |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         8 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         8 |  0.00 |
@@ -150,10 +152,10 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |   66 |        Flop & Latch |
+| FDRE     |   61 |        Flop & Latch |
 | LUT5     |   40 |                 LUT |
-| OBUF     |   24 |                  IO |
 | LUT4     |   12 |                 LUT |
+| OBUF     |   11 |                  IO |
 | CARRY4   |    8 |          CarryLogic |
 | IBUF     |    6 |                  IO |
 | FDSE     |    6 |        Flop & Latch |

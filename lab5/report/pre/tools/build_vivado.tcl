@@ -1,6 +1,6 @@
-# LAB5 FPGA 3개 설계의 합성과(피아노는) 배치·배선·bitstream까지 비프로젝트 모드로 실행한다.
+# LAB5 FPGA 3개 설계의 합성, 배치·배선, bitstream까지 비프로젝트 모드로 실행한다.
 # 사용: vivado -mode batch -source build_vivado.tcl -tclargs <lab5 폴더> <작업 폴더>
-# 신호등·ADC는 교재 핀 표가 없어 XDC 없이 합성만 해 자원 사용량을 본다.
+# ADC는 보드 핀이 없는 출력이 있어 src/adc_board.v(감싸기 top)를 더 읽고 adc_board를 top으로 쓴다.
 set lab5 [file normalize [lindex $argv 0]]
 set work [file normalize [lindex $argv 1]]
 set part xc7s75fgga484-1
@@ -17,13 +17,14 @@ proc read_srcs {dir} {
 
 foreach {proj top xdc} {
     lab5_01_piano   piano   constraints/piano.xdc
-    lab5_02_traffic traffic {}
-    lab5_03_adc     adc     {}
+    lab5_02_traffic traffic constraints/traffic.xdc
+    lab5_03_adc     adc_board constraints/adc_board.xdc
 } {
     set dir $lab5/$proj
     close_project -quiet
     create_project -in_memory -part $part
     read_srcs $dir
+    if {$top eq "adc_board"} { read_verilog $dir/src/adc_board.v }
     if {$xdc ne ""} { read_xdc $dir/$xdc }
     synth_design -top $top -part $part
     report_utilization -file $logs/${proj}_utilization_synth.rpt

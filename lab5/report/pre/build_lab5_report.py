@@ -388,7 +388,7 @@ def build():
     add_text(doc, '과제3·4의 코드는 한 파일에 작성하고 매크로 STM32_1_TASK로 골라 각각 Arm GCC로 빌드했다. 같은 소스를 PC에서 HAL 대역과 '
                   '함께 실행하며 TIM6와 버튼 인터럽트를 흉내 내어 간격 순환, 길게 누름, 200 ms 잠금, 접점 떨림, PWM 비율 순환을 확인했다. '
                   'FPGA 세 설계는 매뉴얼의 테스트벤치와 직접 작성한 파형 확인용 테스트벤치가 Icarus Verilog와 Vivado 시뮬레이터에서 '
-                  '모두 통과했다. 피아노는 bitstream까지 만들었고, 신호등과 ADC는 교재의 핀 표가 없어 합성까지만 했다.')
+                  '모두 통과했다. 장비 교재의 핀 표로 세 설계의 XDC를 작성해 모두 bitstream까지 만들었다.')
     add_text(doc, 'LAB4에서 찾은 떨림 위험은 인터럽트 방식에도 그대로 남는다. 버튼 인터럽트는 상승 에지에서만 오므로, 200 ms보다 길게 '
                   '눌렀다 뗄 때의 떨림이 새 누름으로 인정된다. 보드에서 이 현상이 나오면 TIM6로 버튼이 떨어진 것을 확인한 뒤에만 '
                   '다음 누름을 받는 대비안으로 바꾼다.')
@@ -397,8 +397,8 @@ def build():
         ['과제3', 'Arm GCC 빌드, 호스트 4개 시나리오', '1→2→4→8→1초'],
         ['과제4', 'Arm GCC 빌드, 호스트 2개 시나리오', '25→50→75→25 %'],
         ['피아노', 'Icarus·Vivado TB 2개, bitstream', 'PASS, 타이밍 충족'],
-        ['신호등', 'Icarus·Vivado TB 2개, 합성', 'PASS, LUT 31개'],
-        ['ADC', 'Icarus·Vivado TB 2개, 합성', 'PASS, LUT 60개'],
+        ['신호등', 'Icarus·Vivado TB 2개, bitstream', 'PASS, 타이밍 충족'],
+        ['ADC', 'Icarus·Vivado TB 2개, bitstream', 'PASS, 타이밍 충족'],
     ], [0.62, 1.48, 1.12], size=7.2)
     add_text(doc, '여기서 PASS와 호스트 시뮬레이션 결과는 논리가 맞다는 뜻이다. 실제 인터럽트 지연, 버튼의 떨림, 계측기에서 본 PWM 파형, '
                   'FPGA 핀 결선과 외부 장치의 동작은 포함하지 않으므로 각 장 끝의 표대로 보드에서 따로 확인한다.', size=8.5)
@@ -732,24 +732,44 @@ def build():
                   'yellow와 walk_red가 함께 1111과 0000을 오간다.')
     fig = add_figure(doc, IMG / 'vivado' / 'lab5_02_traffic_tb.png',
                      'FPGA-02 Vivado 전체 파형(tb, 2186 ns, 두 줄 배치). 네 방향의 순환, 점멸 모드, 리셋.', fig)
-    add_heading(doc, '합성 결과와 보드에서 확인할 항목', 2)
-    add_text(doc, 'XDC 없이 합성만 하면 LUT 31개, 레지스터 32개, 입출력 27개다. 출력이 차량 16개(좌회전 포함)와 보행자 8개로 24개라 보드의 '
-                  'LED 8개로는 모자란다. 교재의 신호등 실습이 어떤 표시 장치에 연결되는지와 그 핀 표를 실험 당일 확인한 뒤 XDC를 작성한다.')
+    add_heading(doc, '핀 배치와 구현 결과', 2)
+    add_text(doc, '출력 24개(차량 R·Y·G·좌회전과 보행자 R·G, 4방향)는 확장포트 EXT41~64에 꽂힌 신호등 모듈로 나간다. 핀은 장비 교재 '
+                  '[실습 37]의 핀 표를 따랐고, 각 핀이 교재의 확장포트 표(EXT41~64)에 있는 것을 대조했다. 버스의 인덱스 3·2·1·0이 '
+                  '남·북·서·동이다.')
+    add_table(doc, ['신호[3:0]', '남 · 북 · 서 · 동'], [
+        ['led_red', 'B13 · G14 · C17 · C12'],
+        ['led_yellow', 'L18 · A14 · C18 · D13'],
+        ['led_green', 'E16 · C16 · A20 · E11'],
+        ['led_left', 'F15 · D15 · C19 · F10'],
+        ['led_walk_red', 'A19 · G13 · E18 · C11'],
+        ['led_walk_green', 'E19 · F12 · A16 · G11'],
+        ['clk · rst · flicker', 'B6 · K4 · N8 (SW2)'],
+    ], [1.05, 2.17], size=7.0, center_first=False)
+    add_text(doc, '교재 예제는 flicker 버튼과 sw_flicker 버튼을 따로 두지만, 매뉴얼 설계의 flicker는 HIGH인 동안만 점멸 모드다. '
+                  '그래서 교재의 flicker 버튼(SW2, N8)에 연결해 누르고 있는 동안 점멸하게 했다.')
+    add_table(doc, ['항목', '값'], [
+        ['LUT · 레지스터', '42개 · 32개'],
+        ['타이밍', '50 MHz에서 WNS +15.148 ns, 위반 없음'],
+        ['DRC', '오류 0, 경고 1 (CFGBVS 미설정)'],
+        ['bitstream', 'lab5_02_traffic/bitstream/traffic.bit'],
+    ], [0.9, 2.32], size=7.2)
+    add_link_line(doc, 'XDC', gh(f'{LAB}/lab5_02_traffic/constraints/traffic.xdc'))
+    add_heading(doc, '보드에서 확인할 항목', 2)
     add_table(doc, ['확인 항목', '예상 관찰'], [
         ['리셋 뒤', '방향 0 초록, 대응 보행자 초록'],
         ['4초부터', '보행자 초록이 0.5초씩 점멸'],
         ['11초부터', '방향 0 노랑, 보행자 빨강'],
         ['13초', '방향 1로 이동'],
-        ['flicker', '노랑·보행자 빨강 동시 점멸'],
+        ['flicker', 'SW2를 누르는 동안 노랑·보행자 빨강 점멸'],
         ['LED 극성', '반대로 켜지면 교재의 극성 확인'],
     ], [0.9, 2.32], size=7.2)
 
     # ================================================================= FPGA 03
     add_heading(doc, 'FPGA-03 ADC', 1)
     add_heading(doc, '회로 목적과 구조', 2)
-    add_text(doc, '보드의 직렬 ADC 칩에 변환 명령을 보내고 변환 결과 12비트를 받아 LED에 표시한다. FPGA는 SCLK, CS, DIN을 만들고 DOUT을 '
+    add_text(doc, '보드의 직렬 ADC 칩(AD7908, 8채널 8비트)에 변환 명령을 보내고 변환 결과를 받아 LED에 표시한다. 교재 기준으로 ch0에는 CdS 센서, ch1에는 가변저항 전압이 연결되어 있다. FPGA는 SCLK, CS, DIN을 만들고 DOUT을 '
                   '받는 주인 역할이다. CS를 LOW로 둔 16클록 동안 명령 16비트를 내보내면서 동시에 결과 16비트를 받는다. 다음 주차의 SPI와 같은 구조다.')
-    fig = add_figure(doc, IMG / 'block' / '03_adc_block.png', 'FPGA-03 블록 흐름. 설계 top은 adc.', fig)
+    fig = add_figure(doc, IMG / 'block' / '03_adc_block.png', 'FPGA-03 블록 흐름. 설계 top은 adc, 보드용 top은 adc_board.', fig)
     add_table(doc, ['비트', '값', '뜻 (원본 예제의 구성)'], [
         ['15~13', '101', 'WR, SEQ, 고정 비트'],
         ['12~10', 'add_sel', '채널 주소'],
@@ -780,15 +800,34 @@ def build():
     add_text(doc, '파형 확인용 TB의 ADC 모델은 SCLK 상승에서 mosi를 받는다. 처음에는 CS가 HIGH가 되면 받지 않도록 했는데, 마지막 상승 에지와 '
                   'CS 해제가 같은 클록에 일어나 15비트만 받았다. 매뉴얼 TB처럼 비트 수로 16에서 끊도록 고쳤다. 설계가 아닌 TB 모델의 문제였지만, '
                   '실제 ADC 칩도 마지막 비트를 CS 해제 직전에 읽을 수 있는지 설명서의 시간 조건으로 확인해야 한다는 뜻이다.')
-    add_heading(doc, '합성 결과와 보드에서 확인할 항목', 2)
-    add_text(doc, 'XDC 없이 합성하면 LUT 60개, 레지스터 72개다. ADC 칩의 SCLK·CS·DIN·DOUT 핀과 채널 선택 입력은 교재 adc.zip의 핀 표로 '
-                  'XDC를 작성한다.')
+    add_heading(doc, '핀 배치와 구현 결과', 2)
+    add_text(doc, '매뉴얼의 adc 모듈에는 보드 핀이 없는 출력 sample[11:0]과 data_valid가 있다. 이 포트에 핀을 정하지 않으면 bitstream을 만들 수 '
+                  '없으므로, adc를 그대로 연결하고 두 출력은 내부에 남기는 보드용 top adc_board를 따로 만들었다. 시뮬레이션은 계속 adc를 직접 검사한다.')
+    add_table(doc, ['신호', '핀', '근거'], [
+        ['adc_ncs · din', 'H3 · H5', '교재 SPI_AD · SPI_DIN'],
+        ['adc_dout · sclk', 'J6 · H7', '교재 SPI_DOUT · SPI_SCK'],
+        ['add_sel[0]', 'Y1', '교재 DIP_SW1'],
+        ['add_sel[2:1]', 'U2 · W3', 'LAB1에서 Y1과 함께 쓴 스위치'],
+        ['led_out[7:0]', 'L4 M4 M2 N7 M7 M3 M1 N5', '교재 LED1~8'],
+    ], [0.9, 1.3, 1.02], size=7.0, center_first=False)
+    add_text(doc, '교재 예제는 채널 선택을 DIP_SW1 하나로 하므로 ch0과 ch1만 고른다. 설계의 add_sel은 3비트라 나머지 두 비트를 LAB1의 벤더 예제에서 '
+                  'Y1과 나란히 쓰인 스위치 W3·U2에 두었다. 이 두 핀이 DIP_SW2·3인지는 실험 전에 확인한다. AD7908의 출력 워드에서 변환값 8비트는 '
+                  '하위 12비트 중 위쪽 8비트(rx_word[11:4])에 오므로, LED에 낸 sample[11:4]가 곧 변환값이다.')
+    add_table(doc, ['항목', '값'], [
+        ['LUT · 레지스터', '57개 · 67개 (top adc_board)'],
+        ['타이밍', '50 MHz에서 WNS +15.055 ns, 위반 없음'],
+        ['DRC', '오류 0, 경고 1 (CFGBVS 미설정)'],
+        ['bitstream', 'lab5_03_adc/bitstream/adc_board.bit'],
+    ], [0.9, 2.32], size=7.2)
+    add_link_line(doc, 'XDC', gh(f'{LAB}/lab5_03_adc/constraints/adc_board.xdc'))
+    add_heading(doc, '보드에서 확인할 항목', 2)
     add_table(doc, ['확인 항목', '예상 관찰'], [
         ['입력 0 V', 'LED 모두 꺼짐에 가까움'],
         ['입력 증가', 'LED 값이 이진수로 커짐'],
         ['최대 입력', 'LED 모두 켜짐에 가까움'],
         ['채널 변경', '다른 입력의 값으로 바뀜'],
         ['오실로스코프', 'CS LOW 16 µs, SCLK 1 MHz 16펄스'],
+        ['DIN 에지', 'AD7908이 DIN을 읽는 SCLK 에지와 설계의 출력 시점 대조'],
     ], [0.9, 2.32], size=7.2)
 
     # ---- 결론
@@ -804,10 +843,10 @@ def build():
         ['4', '과제4 다운로드', '세 비율의 PB4 파형 캡처'],
         ['5', '디버거 실습', 'Watch 화면 캡처'],
         ['6', '피아노 bitstream', '버튼별 소리 영상'],
-        ['7', '신호등·ADC', '교재 핀 표로 XDC 작성 후 시연'],
+        ['7', '신호등·ADC bitstream', '신호 순서 영상, 센서별 LED 값'],
     ], [0.42, 1.4, 1.4], size=7.2)
     add_text(doc, '실험 후 보고서에서는 위 측정값을 이 보고서의 예상 시각, 예상 HIGH 폭과 비교하고, 길게 누름에서 떨림 문제가 실제로 '
-                  '나왔는지와 그때의 대응을 적는다. 신호등과 ADC는 실제 핀 배치와 함께 결과를 정리한다.')
+                  '나왔는지와 그때의 대응을 적는다. ADC는 채널 선택 스위치 핀과 DIN 에지를 확인한 결과를 함께 적는다.')
 
     add_heading(doc, '참고 문헌', 1)
     add_text(doc, '[1] Joseph Yiu, The Definitive Guide to ARM Cortex-M3 and Cortex-M4 Processors, 3rd ed., Newnes, 2013. '

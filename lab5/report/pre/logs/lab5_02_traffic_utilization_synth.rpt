@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Oct 16 23:43:29 2026
+| Date         : Mon Oct 19 14:38:21 2026
 | Host         : kdesktop running 64-bit major release  (build 9200)
 | Command      : report_utilization -file C:/ece2/UOS_ece2/lab5/report/pre/logs/lab5_02_traffic_utilization_synth.rpt
 | Design       : traffic
@@ -31,8 +31,8 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |   31 |     0 |          0 |     48000 |  0.06 |
-|   LUT as Logic          |   31 |     0 |          0 |     48000 |  0.06 |
+| Slice LUTs*             |   42 |     0 |          0 |     48000 |  0.09 |
+|   LUT as Logic          |   42 |     0 |          0 |     48000 |  0.09 |
 |   LUT as Memory         |    0 |     0 |          0 |     17600 |  0.00 |
 | Slice Registers         |   32 |     0 |          0 |     96000 |  0.03 |
 |   Register as Flip Flop |   32 |     0 |          0 |     96000 |  0.03 |
@@ -95,7 +95,9 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   27 |     0 |          0 |       338 |  7.99 |
+| Bonded IOB                  |   27 |    27 |          0 |       338 |  7.99 |
+|   IOB Master Pads           |   11 |       |            |           |       |
+|   IOB Slave Pads            |   15 |       |            |           |       |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         8 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         8 |  0.00 |
@@ -152,12 +154,12 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | FDRE     |   32 |        Flop & Latch |
 | OBUF     |   24 |                  IO |
-| LUT4     |   16 |                 LUT |
-| LUT5     |   15 |                 LUT |
-| LUT6     |    7 |                 LUT |
+| LUT4     |   19 |                 LUT |
+| LUT6     |   18 |                 LUT |
+| LUT3     |   10 |                 LUT |
 | CARRY4   |    7 |          CarryLogic |
-| LUT3     |    5 |                 LUT |
-| LUT2     |    3 |                 LUT |
+| LUT2     |    6 |                 LUT |
+| LUT5     |    4 |                 LUT |
 | IBUF     |    3 |                  IO |
 | LUT1     |    1 |                 LUT |
 | BUFG     |    1 |               Clock |
