@@ -1,0 +1,1 @@
+{"sources": ["src/uart.v", "src/mcu_uart_led.v"], "testbench": "sim/tb.sv", "simulation_top": "tb"}

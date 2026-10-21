@@ -1,0 +1,3 @@
+PASS uart_led: 12 bytes echoed, LED commands 0/1/2/other, framing error, reset
+$finish called at time : 39931 ns : File "C:/Users/ip936/AppData/Local/Temp/claude/C--ece2/06bc0f94-18f0-42de-aa30-661f1bac0a89/scratchpad/xsim/lab6_04_uart_led_tb/tb.sv" Line 79
+INFO: [Common 17-206] Exiting xsim at Wed Oct 21 21:23:49 2026...

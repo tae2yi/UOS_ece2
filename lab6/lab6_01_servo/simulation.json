@@ -1,0 +1,1 @@
+{"sources": ["src/servo_position.v", "src/servo_pwm.v", "src/servo_ctrl.v", "src/button_pulse.v", "src/servo_board.v"], "testbench": "sim/tb.sv", "simulation_top": "tb"}

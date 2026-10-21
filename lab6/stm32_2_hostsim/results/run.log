@@ -1,0 +1,28 @@
+== task5_chars (task5, PC 입력 3 B)
+받은 문자: 1 (0x31)
+받은 문자: A (0x41)
+받은 문자: a (0x61)
+== task5_crlf (task5, PC 입력 3 B)
+받은 문자: A (0x41)
+받은 문자: \r (0x0D)
+받은 문자: \n (0x0A)
+== task5_utf8 (task5, PC 입력 3 B)
+받은 문자: ? (0xEA)
+받은 문자: ? (0xB0)
+받은 문자: ? (0x80)
+UART3 bytes: 3 -> results/task6_chars_uart3.hex
+== task6_chars (task6, PC 입력 3 B)
+FPGA로 보냄: 1 (0x31), 전송 결과: 0
+FPGA로 보냄: A (0x41), 전송 결과: 0
+FPGA로 보냄: a (0x61), 전송 결과: 0
+UART3 bytes: 9 -> results/task7_cmds_uart3.hex
+== task7_cmds (task6, PC 입력 9 B)
+FPGA로 보냄: 1 (0x31), 전송 결과: 0
+FPGA로 보냄: 1 (0x31), 전송 결과: 0
+FPGA로 보냄: 2 (0x32), 전송 결과: 0
+FPGA로 보냄: 2 (0x32), 전송 결과: 0
+FPGA로 보냄: 2 (0x32), 전송 결과: 0
+FPGA로 보냄: 0 (0x30), 전송 결과: 0
+FPGA로 보냄: 0 (0x30), 전송 결과: 0
+FPGA로 보냄: x (0x78), 전송 결과: 0
+FPGA로 보냄: 2 (0x32), 전송 결과: 0

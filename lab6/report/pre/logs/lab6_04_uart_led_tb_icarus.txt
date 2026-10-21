@@ -1,0 +1,16 @@
+task6 bytes from MCU host simulation:
+  1 0x31 -> PC 0x31, led_cmd=1
+  A 0x41 -> PC 0x41, led_cmd=1
+  a 0x61 -> PC 0x61, led_cmd=1
+task7 commands from MCU host simulation:
+  1 0x31 -> PC 0x31, led_cmd=1
+  1 0x31 -> PC 0x31, led_cmd=1
+  2 0x32 -> PC 0x32, led_cmd=0
+  2 0x32 -> PC 0x32, led_cmd=1
+  2 0x32 -> PC 0x32, led_cmd=0
+  0 0x30 -> PC 0x30, led_cmd=0
+  0 0x30 -> PC 0x30, led_cmd=0
+  x 0x78 -> PC 0x78, led_cmd=0
+  2 0x32 -> PC 0x32, led_cmd=1
+PASS uart_led: 12 bytes echoed, LED commands 0/1/2/other, framing error, reset
+sim/tb.sv:79: $finish called at 40171000 (1ps)

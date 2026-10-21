@@ -1,0 +1,7 @@
+# LibreOffice/Word lock files and Python caches
+.~lock.*#
+~$*
+__pycache__/
+
+# 휴대전화 원본 영상(이름을 바꿔 다시 인코딩한 것만 올린다)
+report/final/videos/original/

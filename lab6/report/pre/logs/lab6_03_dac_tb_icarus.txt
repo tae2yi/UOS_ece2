@@ -1,0 +1,2 @@
+PASS DAC: 260 writes, wraparound, channel, data hold, reset
+sim/tb.sv:31: $finish called at 10436000 (1ps)

@@ -1,0 +1,1 @@
+{"sources": ["src/sram_bus_control.v", "src/sram.v"], "testbench": "sim/tb.sv", "simulation_top": "tb"}

@@ -1,0 +1,2 @@
+PASS SRAM view: 4 writes, 4 reads (9 6 a 3), conflict ignored
+sim/tb_view.sv:47: $finish called at 360000 (1ps)

@@ -1,0 +1,2 @@
+PASS servo: 20ms frame, 1/1.5/2ms pulse, limits, reset
+PASS servo view: bounce -> one step, widths 15/14/17/17 clocks

@@ -1,0 +1,19 @@
+### task5: cmake --preset Debug && cmake --build --preset Debug
+[31/31] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2640 B       128 KB      2.01%
+           FLASH:       28028 B       512 KB      5.35%
+
+### task6/7: cmake -S . -B build/Task6 -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS=-DSTM32_2_TASK=6
+[31/31] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2640 B       128 KB      2.01%
+           FLASH:       28076 B       512 KB      5.36%
+### nm build/Debug
+08005714 0000000e T ece2_474_init
+08005784 00000040 T polling_routine
+08005724 00000060 t print_byte
+### nm build/Task6
+08005714 0000000e T ece2_474_init
+08005784 00000058 T polling_routine
+08005724 00000060 t print_byte

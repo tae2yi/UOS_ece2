@@ -1,0 +1,2 @@
+PASS DAC view: 12 writes (0..11), channel A then B
+sim/tb_view.sv:21: $finish called at 530000 (1ps)

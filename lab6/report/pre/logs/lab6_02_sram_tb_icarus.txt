@@ -1,0 +1,2 @@
+PASS SRAM: 16 addresses, bus release, simultaneous request
+sim/tb.sv:42: $finish called at 164000 (1ps)
