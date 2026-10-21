@@ -95,7 +95,7 @@ def build():
     add_heading(doc, '1 실험 범위와 결과 요약', 1)
     add_text(doc, '10월 19일 실험에서 FPGA 교재 실습 3개(피아노, 신호등 제어, ADC)를 Combo II-DLD 보드에서, STM32_1 과제 2개'
                   '(버튼·TIM6 인터럽트로 LED 간격 변경, 버튼으로 PWM 비율 변경)를 NUCLEO-G474RE에서 동작시키고 영상 5개로 남겼다. '
-                  '이 보고서는 영상과 영상 속 소리에서 읽은 값을 예비보고서[5]의 예상과 비교한다. 보드 사진은 모두 영상의 장면이다.')
+                  '이 보고서는 영상과 영상 속 소리에서 읽은 값을 예비보고서의 예상과 비교한다. 보드 사진은 모두 영상의 장면이다.')
     add_table(doc, ['실험', '영상에서 확인한 것', '예상과 비교'], [
         ['피아노', '8음 주파수 262.00~523.00 Hz', '설계값과 0.11 Hz 이내'],
         ['신호등', '보행 초록 변화 17번, 점멸·노랑·방향 전환', '모든 변화가 계산과 같은 프레임'],
@@ -131,7 +131,7 @@ def build():
     add_heading(doc, '설계와 사전 검증', 2)
     add_text(doc, '버튼 8개 중 하나가 눌리면 note_select가 음의 주파수를 내고, square_tone이 50 MHz 클록을 세어 반주기 '
                   '50,000,000 / (2f) 클록마다 피에조 출력을 뒤집는다. 두 개 이상 누르거나 떼면 무음이다. 실험 전에 매뉴얼 TB와 '
-                  '파형 확인용 TB가 Icarus·Vivado 모두 통과했고, 50 MHz에서 WNS +14.043 ns로 타이밍을 충족했다[5].')
+                  '파형 확인용 TB가 Icarus·Vivado 모두 통과했고, 50 MHz에서 WNS +14.043 ns로 타이밍을 충족했다.')
     fig = add_figure(doc, PRE_IMG / 'vivado' / 'lab5_01_piano_tb_view.png',
                      'FPGA-01 Vivado 파형(tb_view, CLK_HZ=10000, 두 줄 배치). key 80·20·01에서 반주기 19·15·9클록으로 토글, '
                      '두 키(c0)와 무입력에서는 piezo=0.', fig)
@@ -164,7 +164,7 @@ def build():
     add_heading(doc, '설계와 사전 검증', 2)
     add_text(doc, 'second_tick이 1초에 한 클록짜리 tick과 매초 앞 0.5초 동안 HIGH인 blink를 만든다[2]. traffic_sequence는 tick마다 '
                   'phase를 올려 0~10초 초록(4~10초는 보행 초록 점멸), 11~12초 노랑을 거친 뒤 다음 방향으로 넘어간다. flicker가 HIGH인 동안은 '
-                  '방향·phase를 0에 묶고 노랑과 보행 빨강을 blink로 점멸한다. 매뉴얼 TB와 파형 TB가 통과했고 WNS +15.148 ns였다[5].')
+                  '방향·phase를 0에 묶고 노랑과 보행 빨강을 blink로 점멸한다. 매뉴얼 TB와 파형 TB가 통과했고 WNS +15.148 ns였다.')
     fig = add_figure(doc, PRE_IMG / 'vivado' / 'lab5_02_traffic_tb_view.png',
                      'FPGA-02 Vivado 파형(tb_view, CLK_HZ=4라 40 ns가 1초). 방향 0의 0~12단계, 방향 1의 시작, 점멸 모드.', fig)
     add_heading(doc, '보드 관찰', 2)
@@ -376,8 +376,7 @@ def build():
                 'and SystemVerilog, 6th ed., Pearson, 2018. ISBN 978-0-13-454989-7.',
                 '[3] STMicroelectronics, STM32CubeG4 MCU Firmware Package (stm32g4xx_hal_tim.c, stm32g4xx_hal_gpio.c). '
                 'https://github.com/STMicroelectronics/STM32CubeG4',
-                '[4] Analog Devices, AD7908/AD7918/AD7928 8-Channel, 1 MSPS, 8-/10-/12-Bit ADCs with Sequencer, Data Sheet.',
-                '[5] 김태이, LAB5 예비 보고서, 2026-10-19 (lab5/report/pre/LAB5_예비보고서.docx).'):
+                '[4] Analog Devices, AD7908/AD7918/AD7928 8-Channel, 1 MSPS, 8-/10-/12-Bit ADCs with Sequencer, Data Sheet.'):
         add_text(doc, ref, size=9.0)
 
     doc.core_properties.title = 'LAB5 결과 보고서'
