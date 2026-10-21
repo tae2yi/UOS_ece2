@@ -4,3 +4,4 @@
 - [Lab 2 실험 영상 재생목록](https://youtube.com/playlist?list=PLbHlLnDMwa6Y&si=6yP5VxLgyYnV-kgB)
 - [Lab 3 실험 영상](lab3/report/final/video/README.md)
 - [Lab 4 실험 영상](lab4/report/final/videos/README.md)
+- [Lab 5 실험 영상](lab5/report/final/videos/README.md)

@@ -1,0 +1,8 @@
+code=00 (00000000)  sample=000  led=00000000 (00)       same
+code=01 (00000001)  sample=020  led=00000010 (02)  DIFFERENT
+code=55 (01010101)  sample=aa0  led=10101010 (aa)  DIFFERENT
+code=7f (01111111)  sample=fe0  led=11111110 (fe)  DIFFERENT
+code=80 (10000000)  sample=000  led=00000000 (00)  DIFFERENT
+code=ff (11111111)  sample=fe0  led=11111110 (fe)  DIFFERENT
+RESULT 1 of 6 codes shown correctly on LED
+board_fix/tb_dout.sv:40: $finish called at 4106000 (1ps)
