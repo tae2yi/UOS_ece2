@@ -3,3 +3,6 @@ Thumbs.db
 
 # Word / Office 임시 잠금 파일 (문서를 열어두면 생김)
 ~$*
+
+# 이 PC의 도구 경로 문서(로컬 전용, 공개 저장소에 올리지 않음)
+docs/reference/environment.md
