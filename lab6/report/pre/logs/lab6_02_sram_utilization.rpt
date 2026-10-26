@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Wed Oct 21 21:25:08 2026
+| Date         : Mon Oct 26 14:52:48 2026
 | Host         : kdesktop running 64-bit major release  (build 9200)
 | Command      : report_utilization -file C:/ece2/UOS_ece2/lab6/report/pre/logs/lab6_02_sram_utilization.rpt
 | Design       : sram
@@ -71,9 +71,9 @@ Table of Contents
 +------------------------------------------+------+-------+------------+-----------+-------+
 |                 Site Type                | Used | Fixed | Prohibited | Available | Util% |
 +------------------------------------------+------+-------+------------+-----------+-------+
-| Slice                                    |    1 |     0 |          0 |     16000 | <0.01 |
+| Slice                                    |    3 |     0 |          0 |     16000 |  0.02 |
 |   SLICEL                                 |    1 |     0 |            |           |       |
-|   SLICEM                                 |    0 |     0 |            |           |       |
+|   SLICEM                                 |    2 |     0 |            |           |       |
 | LUT as Logic                             |    4 |     0 |          0 |     48000 | <0.01 |
 |   using O5 output only                   |    0 |       |            |           |       |
 |   using O6 output only                   |    0 |       |            |           |       |
@@ -122,9 +122,9 @@ Table of Contents
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   55 |    18 |          0 |       338 | 16.27 |
-|   IOB Master Pads           |   26 |       |            |           |       |
-|   IOB Slave Pads            |   28 |       |            |           |       |
+| Bonded IOB                  |   55 |    55 |          0 |       338 | 16.27 |
+|   IOB Master Pads           |   23 |       |            |           |       |
+|   IOB Slave Pads            |   29 |       |            |           |       |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         8 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         8 |  0.00 |
