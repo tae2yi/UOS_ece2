@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Wed Oct 21 21:23:34 2026
+| Date         : Mon Oct 26 14:57:32 2026
 | Host         : kdesktop running 64-bit major release  (build 9200)
 | Command      : report_utilization -file C:/ece2/UOS_ece2/lab6/report/pre/logs/lab6_01_servo_utilization_synth.rpt
 | Design       : servo_board
@@ -95,9 +95,9 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |    5 |     4 |          0 |       338 |  1.48 |
+| Bonded IOB                  |    5 |     5 |          0 |       338 |  1.48 |
 |   IOB Master Pads           |    2 |       |            |           |       |
-|   IOB Slave Pads            |    2 |       |            |           |       |
+|   IOB Slave Pads            |    3 |       |            |           |       |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         8 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         8 |  0.00 |
