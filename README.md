@@ -5,3 +5,4 @@
 - [Lab 3 실험 영상](lab3/report/final/video/README.md)
 - [Lab 4 실험 영상](lab4/report/final/videos/README.md)
 - [Lab 5 실험 영상](lab5/report/final/videos/README.md)
+- [Lab 6 실험 영상](lab6/report/final/videos/README.md)
