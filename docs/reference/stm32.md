@@ -3,6 +3,9 @@
 ## 수업 프로젝트
 
 - 조교 저장소 <https://github.com/Glaysia/ece2_474>, 태그 **v1.1.0**, 커밋 `dd94f01047aebdece09b9620c66e9b179403e5c9`. 4주 매뉴얼이 `docs/`에 전부 있다(매주 추가 매뉴얼 없음).
+- **2026-11-01부터 조교 저장소가 <https://github.com/Glaysia/ece2_26_2_2>로 바뀌었다**(옛 주소는 Repository not found). 커밋 `1fab83ee3c6bb595c73d7834be143d3865efa92b`(10/30).
+  STM32 기본 프로젝트 = `c/stm32/base`(v1.1.0과 같은 파일, routine.c 동일 확인), 매뉴얼 = `c/stm32/docs/`(lab6 사본과 동일), 제공 코드 = `c/stm32/examples/NN_*`, FPGA 템플릿 = `templates/fpga`(v2.0.2).
+  Windows에서 clone하면 긴 경로 때문에 체크아웃이 일부 실패한다 → `git config core.longpaths true` 후 `git restore --source=HEAD :/`.
 - 각 lab의 `labN/stm32_lab/`에 사본(중첩 `.git` 삭제). 학생이 고치는 파일은 **`Core/Src/ece2_474_routine.c` 하나**.
 - 주차: STM32_0(10/12, 과제1·2 폴링 LED·버튼) / STM32_1(10/19, 과제3·4 버튼·TIM6 ISR, PWM) / STM32_2(10/26, 과제5~7 UART) / STM32_3(11/2, 과제8~12 SPI Mode 0, 8비트, MSB first, MISO 미사용).
 - 매뉴얼의 "예제 시작과 전환": `ece2_474_init()`의 시작 호출 정리, 이전 동작 코드 비우기, 함수 선언과 `HAL_…Callback` 연결은 유지, Build 후 F5로 다운로드.

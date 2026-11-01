@@ -1,0 +1,2 @@
+PASS spi_link view: B received 0x55, 0xA5 from A
+sim/tb_view.sv:30: $finish called at 115154275 (1ps)

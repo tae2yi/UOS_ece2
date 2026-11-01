@@ -1,0 +1,3 @@
+RX=55
+RX timeout: check sender, SCK, MOSI, CS and GND
+RX=A5

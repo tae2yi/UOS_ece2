@@ -7,7 +7,7 @@ LAB4~LAB6에서 실제로 해 온 순서다. 가장 최근 예시인 **lab6**를
 
 사용자는 보통 "labN 예비보고서 작성하려고 해. 혹시 조교 깃허브에 관련자료가 있는지 확인해줄래?"로 시작한다.
 
-1. 조교 저장소 <https://github.com/Glaysia/ece2_474>의 `docs/index.md` 주차 표에서 해당 날짜 문서를 찾는다
+1. 조교 저장소 <https://github.com/Glaysia/ece2_26_2_2>(11/1부터. 이전 `Glaysia/ece2_474`)의 `c/stm32/docs/index.md` 주차 표에서 해당 날짜 문서를 찾는다
    (10/12 STM32_0, 10/19 STM32_1, 10/26 STM32_2, 11/2 STM32_3). `docs/FPGA_additional.md`에 그 주 FPGA 교재 실습(Verilog 소스·TB)이 절별로 있다.
    로컬에 최신 사본이 `lab6/stm32_lab/docs/`에 있지만, 조교가 갱신했을 수 있으니 웹(또는 clone)으로 다시 확인한다.
 2. 이번 주 MCU 과제, FPGA 실습, 배선·핀 변경, 퀴즈 공지 등을 표로 요약해 보고하고 진행 범위를 제안한다.

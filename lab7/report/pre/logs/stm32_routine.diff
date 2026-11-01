@@ -1,0 +1,104 @@
+--- ece2_474_routine.c (Glaysia/ece2_26_2_2 1fab83e, c/stm32/base)
++++ ece2_474_routine.c (lab7)
+@@ -15,9 +15,48 @@
+ // static uint8_t uart2_rx_ece2;
+ // static uint8_t uart3_rx_ece2;
+ 
++/* STM32_3 역할 선택 (SPI Mode 0, 8비트, MSB first, MISO 미사용)
++ * 1 = SPI1 마스터 송신: 과제8(파형), 과제9 송신 측, 과제10(MCU -> FPGA)
++ * 2 = SPI1 슬레이브 수신: 과제9 수신 측, 과제11(FPGA -> MCU)
++ * 수신 측은 빌드할 때 -DSTM32_3_ROLE=2를 준다(또는 아래 기본값을 2로 바꾼다).
++ */
++#ifndef STM32_3_ROLE
++#define STM32_3_ROLE 1
++#endif
++
++/* 마스터가 보낼 값. 기본은 매뉴얼의 네 값을 1초마다 차례로 보낸다.
++ * 오실로스코프에서 한 값만 계속 보려면 -DSTM32_3_TX_FIXED=0x55처럼 준다.
++ */
++#if STM32_3_ROLE == 1 && !defined(STM32_3_TX_FIXED)
++static const uint8_t tx_values_ece2[] = {0x55U, 0xA5U, 0x00U, 0xFFU};
++#endif
++
++/* 수신 측 장치 선택 입력: PA4 = SPI1 NSS (송신 측 CS는 PB6) */
++#define SPI_NSS_RX_ece2_Pin       GPIO_PIN_4
++#define SPI_NSS_RX_ece2_GPIO_Port GPIOA
++
+ /* 주변장치 초기화가 끝난 뒤, 메인 루프에 들어가기 전에 한 번 호출됩니다. */
+ void ece2_474_init(void)
+ {
++#if STM32_3_ROLE == 2
++    /* 수신: main.c는 그대로, SPI1만 슬레이브로 재설정 */
++    if (HAL_SPI_DeInit(&hspi1) != HAL_OK)
++        Error_Handler();
++
++    hspi1.Init.Mode = SPI_MODE_SLAVE;
++    hspi1.Init.NSS = SPI_NSS_HARD_INPUT;
++    if (HAL_SPI_Init(&hspi1) != HAL_OK)
++        Error_Handler();
++
++    GPIO_InitTypeDef gpio = {0};
++    gpio.Pin = SPI_NSS_RX_ece2_Pin;
++    gpio.Mode = GPIO_MODE_AF_PP;
++    gpio.Pull = GPIO_PULLUP;
++    gpio.Speed = GPIO_SPEED_FREQ_LOW;
++    gpio.Alternate = GPIO_AF5_SPI1;
++    HAL_GPIO_Init(SPI_NSS_RX_ece2_GPIO_Port, &gpio);
++#endif
++
+     /* 필요한 기능만 주석을 해제합니다. 기본 핀·통신 설정은 이미 끝난 상태입니다.
+      * VS Code에서 해당 줄에 커서를 놓거나 여러 줄을 선택하고 Ctrl + /를 누르면
+      * 줄 주석(//)을 해제하거나 다시 설정할 수 있습니다.
+@@ -51,7 +90,51 @@
+ /* 메인 루프에서 반복해서 호출됩니다. */
+ void polling_routine(void)
+ {
+-    /* 실습 코드 작성 */
++#if STM32_3_ROLE == 1
++    /* 송신: 1초마다 CS LOW, 1바이트, CS HIGH */
++    static uint32_t last_ms = 0;
++    static uint32_t index = 0;
++    uint32_t now_ms = HAL_GetTick();
++    if (now_ms - last_ms < 1000U) return;
++    last_ms = now_ms;
++
++#ifdef STM32_3_TX_FIXED
++    uint8_t tx = (uint8_t)(STM32_3_TX_FIXED);
++    (void)index;
++#else
++    uint8_t tx = tx_values_ece2[index];
++    index = (index + 1U) %
++            (sizeof(tx_values_ece2) / sizeof(tx_values_ece2[0]));
++#endif
++    HAL_GPIO_WritePin(SPI_CS_ece2_GPIO_Port,
++                      SPI_CS_ece2_Pin, GPIO_PIN_RESET);
++    HAL_StatusTypeDef result =
++        HAL_SPI_Transmit(&hspi1, &tx, 1U, 100U);
++    HAL_GPIO_WritePin(SPI_CS_ece2_GPIO_Port,
++                      SPI_CS_ece2_Pin, GPIO_PIN_SET);
++
++    printf("TX=%02X, result=%d\r\n",
++           (unsigned int)tx, (int)result);
++#else
++    /* 수신: 최대 2초 기다려 결과를 VCP로 출력 */
++    uint8_t rx = 0;
++    HAL_StatusTypeDef result =
++        HAL_SPI_Receive(&hspi1, &rx, 1U, 2000U);
++    if (result == HAL_OK)
++    {
++        printf("RX=%02X\r\n", (unsigned int)rx);
++    }
++    else if (result == HAL_TIMEOUT)
++    {
++        /* 매뉴얼의 한 줄을 보고서 폭 때문에 둘로 나눔(같은 문자열) */
++        printf("RX timeout: check sender, SCK, MOSI, "
++               "CS and GND\r\n");
++    }
++    else
++    {
++        printf("RX error=%d\r\n", (int)result);
++    }
++#endif
+ }
+ 
+ /* 1. 사용자 버튼 PC13을 눌렀을 때 호출됩니다. 우선순위: 7.

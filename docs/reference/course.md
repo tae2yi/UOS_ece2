@@ -3,7 +3,7 @@
 - 과목: 서울시립대 **전자전기컴퓨터설계실험 2**, 2026 2학기. 월 14:00~18:00, 19-213. 정원 20 / 2인 1조, 10조.
 - 도구(OT): VS Code, Verilog/SystemVerilog, VaporView(파형), Vivado 2026.1, STM32 HAL/LL, Git/GitHub. 생성형 AI 허용(코드 설명 책임은 학생).
 - OT 자료: `UOS_ece2/03.LAB0_OT_0907.pdf` (텍스트 추출: `pdftotext -enc UTF-8 -layout`).
-- 조교 자료: FPGA 교안 PDF는 `lab1~3/pdf/`, STM32 계획 `lab4/pdf/STM32_4week_plan.pdf`, 매뉴얼 저장소 <https://github.com/Glaysia/ece2_474>(사본 `lab6/stm32_lab/docs/`).
+- 조교 자료: FPGA 교안 PDF는 `lab1~3/pdf/`, STM32 계획 `lab4/pdf/STM32_4week_plan.pdf`, 매뉴얼 저장소 <https://github.com/Glaysia/ece2_26_2_2>(11/1에 `Glaysia/ece2_474`에서 옮김, 매뉴얼은 `c/stm32/docs/`, 사본 `lab7/stm32_lab/docs/`).
   FPGA 템플릿 <https://github.com/Glaysia/fpga-lab-template> v2.0.2.
 
 ## 일정

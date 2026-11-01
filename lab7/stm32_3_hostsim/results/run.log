@@ -1,0 +1,51 @@
+== master: 8.5 s, 기본(0x55 -> 0xA5 -> 0x00 -> 0xFF 반복)
+t= 1000 ms  SPI TX 55  MOSI bits(MSB first) 01010101  rising-edge decode 55 OK
+t= 2000 ms  SPI TX A5  MOSI bits(MSB first) 10100101  rising-edge decode A5 OK
+t= 3000 ms  SPI TX 00  MOSI bits(MSB first) 00000000  rising-edge decode 00 OK
+t= 4000 ms  SPI TX FF  MOSI bits(MSB first) 11111111  rising-edge decode FF OK
+t= 5000 ms  SPI TX 55  MOSI bits(MSB first) 01010101  rising-edge decode 55 OK
+t= 6000 ms  SPI TX A5  MOSI bits(MSB first) 10100101  rising-edge decode A5 OK
+t= 7000 ms  SPI TX 00  MOSI bits(MSB first) 00000000  rising-edge decode 00 OK
+t= 8000 ms  SPI TX FF  MOSI bits(MSB first) 11111111  rising-edge decode FF OK
+SPI TX bytes: 8, decode errors: 0
+TX=55, result=0
+TX=A5, result=0
+TX=00, result=0
+TX=FF, result=0
+TX=55, result=0
+TX=A5, result=0
+TX=00, result=0
+TX=FF, result=0
+== fixed55: 3 s, -DSTM32_3_TX_FIXED=0x55
+t= 1000 ms  SPI TX 55  MOSI bits(MSB first) 01010101  rising-edge decode 55 OK
+t= 2000 ms  SPI TX 55  MOSI bits(MSB first) 01010101  rising-edge decode 55 OK
+t= 3000 ms  SPI TX 55  MOSI bits(MSB first) 01010101  rising-edge decode 55 OK
+SPI TX bytes: 3, decode errors: 0
+TX=55, result=0
+TX=55, result=0
+TX=55, result=0
+end of SPI input, received 8 bytes
+== slave_from_mcu (입력 results/master_spi.hex)
+RX=55
+RX=A5
+RX=00
+RX=FF
+RX=55
+RX=A5
+RX=00
+RX=FF
+end of SPI input, received 2 bytes
+== slave_timeout (입력 results/slave_timeout_in.hex)
+RX=55
+RX timeout: check sender, SCK, MOSI, CS and GND
+RX=A5
+end of SPI input, received 8 bytes
+== slave_from_fpga (입력 results/fpga_tx_bytes.hex)
+RX=55
+RX=A5
+RX=00
+RX=FF
+RX=55
+RX=A5
+RX=00
+RX=FF

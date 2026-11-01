@@ -39,13 +39,13 @@
 | [reference/report-format.md](reference/report-format.md) | 보고서 형식(OT 요건, docx 레이아웃, 그림·코드 크기, 참고문헌 규칙) |
 | [reference/vivado-capture.md](reference/vivado-capture.md) | Vivado 파형을 실제 GUI로 캡처하는 방법 |
 | [reference/board-combo2.md](reference/board-combo2.md) | Combo II-DLD 핀 번호(확인된 것/미확인), 내장 장치 |
-| [reference/stm32.md](reference/stm32.md) | 수업 STM32 프로젝트(Glaysia/ece2_474), 빌드, 호스트 시뮬레이션 |
+| [reference/stm32.md](reference/stm32.md) | 수업 STM32 프로젝트(Glaysia/ece2_474 → ece2_26_2_2), 빌드, 호스트 시뮬레이션 |
 | [reference/course.md](reference/course.md) | 수업 일정, OT 요약, 조교 저장소 위치 |
 | [history.md](history.md) | 세션별 작업 이력(날짜순) |
 
 ## 절대 잊으면 안 되는 것 (상세는 RULES.md)
 
-1. 참고문헌에 **예비보고서·교안·조교 매뉴얼·조교 저장소(Glaysia/ece2_474)**를 넣지 않는다. 출처 규칙은 OT 파일(`03.LAB0_OT_0907.pdf`).
+1. 참고문헌에 **예비보고서·교안·조교 매뉴얼·조교 저장소(Glaysia/ece2_474, ece2_26_2_2)**를 넣지 않는다. 출처 규칙은 OT 파일(`03.LAB0_OT_0907.pdf`).
 2. 정상 실험의 bitstream·프로젝트 파일은 실제 실습에 쓰므로 **손상시키지 않는다**(수정본은 별도 폴더·파일명).
 3. 템플릿·수업 프로젝트를 clone 하면 **중첩 `.git`을 지우고** 올린다.
 4. 보고서의 GitHub 링크는 커밋한 뒤 **그 커밋 해시로 고정**해서 다시 빌드·커밋한다.

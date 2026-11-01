@@ -1,0 +1,8 @@
+TX=55, result=0
+TX=A5, result=0
+TX=00, result=0
+TX=FF, result=0
+TX=55, result=0
+TX=A5, result=0
+TX=00, result=0
+TX=FF, result=0

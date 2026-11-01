@@ -1,0 +1,10 @@
+t= 10.000 ms  SPI byte 0: 55 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 20.000 ms  SPI byte 1: a5 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 30.000 ms  SPI byte 2: 00 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 40.000 ms  SPI byte 3: ff (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 50.000 ms  SPI byte 4: 55 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 60.000 ms  SPI byte 5: a5 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 70.000 ms  SPI byte 6: 00 (8 edges, period 2000 ns, CS->SCK 1000 ns)
+t= 80.000 ms  SPI byte 7: ff (8 edges, period 2000 ns, CS->SCK 1000 ns)
+PASS spi_tx tb: 8 bytes 55 A5 00 FF x2, SCK 500 kHz, Mode 0 timing, UART TX= lines match
+sim/tb.sv:106: $finish called at 87258510000 (1ps)

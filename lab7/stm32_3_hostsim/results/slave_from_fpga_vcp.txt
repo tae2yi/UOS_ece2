@@ -1,0 +1,8 @@
+RX=55
+RX=A5
+RX=00
+RX=FF
+RX=55
+RX=A5
+RX=00
+RX=FF

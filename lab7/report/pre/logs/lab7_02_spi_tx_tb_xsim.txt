@@ -1,0 +1,3 @@
+PASS spi_tx tb: 8 bytes 55 A5 00 FF x2, SCK 500 kHz, Mode 0 timing, UART TX= lines match
+$finish called at time : 87258510 ns : File "C:/Users/ip936/AppData/Local/Temp/claude/C--ece2-UOS-ece2--claude-worktrees-lab7-preliminary-report-0c6f16/0edd27af-b716-40be-9930-d2b352439f7f/scratchpad/xsim2/lab7_02_spi_tx_tb/tb.sv" Line 106
+INFO: [Common 17-206] Exiting xsim at Sun Nov  1 13:45:06 2026...

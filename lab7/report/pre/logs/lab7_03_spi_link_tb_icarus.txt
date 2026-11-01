@@ -1,0 +1,10 @@
+t= 17.270 ms  A: "TX=55"  B: "RX=55"  B LED=55
+t= 27.270 ms  A: "TX=A5"  B: "RX=A5"  B LED=A5
+t= 37.270 ms  A: "TX=00"  B: "RX=00"  B LED=00
+t= 47.270 ms  A: "TX=FF"  B: "RX=FF"  B LED=FF
+t= 57.270 ms  A: "TX=55"  B: "RX=55"  B LED=55
+t= 67.270 ms  A: "TX=A5"  B: "RX=A5"  B LED=A5
+t= 77.270 ms  A: "TX=00"  B: "RX=00"  B LED=00
+t= 87.270 ms  A: "TX=FF"  B: "RX=FF"  B LED=FF
+PASS spi_link tb: board A TX = board B RX for 8 bytes (separate clocks, wire delay)
+sim/tb.sv:86: $finish called at 87271180725 (1ps)

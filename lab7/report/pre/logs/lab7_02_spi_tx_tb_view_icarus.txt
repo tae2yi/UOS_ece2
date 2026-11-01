@@ -1,0 +1,2 @@
+PASS spi_tx view: 0x55, 0xA5 sent MSB first, SCK 500 kHz
+sim/tb_view.sv:26: $finish called at 117090000 (1ps)

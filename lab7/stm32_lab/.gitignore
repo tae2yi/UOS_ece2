@@ -1,0 +1,16 @@
+build
+mx.scratch
+!.settings
+
+# LaTeX intermediate files (keep .tex and .pdf)
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.fls
+*.fdb_latexmk
+*.xdv

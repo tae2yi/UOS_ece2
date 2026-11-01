@@ -1,0 +1,37 @@
+### master(과제8·9·10): cmake --preset Debug && cmake --build --preset Debug
+Build type: Debug
+[2/2] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2648 B       128 KB      2.02%
+           FLASH:       28924 B       512 KB      5.52%
+
+### Fixed55: cmake -S . -B build/Fixed55 -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS=-DSTM32_3_TX_FIXED=0x55
+Build type: Debug
+[2/2] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2648 B       128 KB      2.02%
+           FLASH:       28892 B       512 KB      5.51%
+
+### Slave: cmake -S . -B build/Slave -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS=-DSTM32_3_ROLE=2
+Build type: Debug
+[2/2] Linking C executable ece2_474.elf
+Memory region         Used Size  Region Size  %age Used
+             RAM:        2640 B       128 KB      2.01%
+           FLASH:       30764 B       512 KB      5.87%
+08005cc8 0000000e T ece2_474_init
+08005cd8 0000008c T polling_routine
+0800704c 00000004 r tx_values_ece2
+08005cc8 0000000e T ece2_474_init
+08005cd8 00000070 T polling_routine
+08006394 0000006c T ece2_474_init
+08006400 00000060 T polling_routine
+### nm build/Debug
+08005cc8 0000000e T ece2_474_init
+08005cd8 0000008c T polling_routine
+0800704c 00000004 r tx_values_ece2
+### nm build/Fixed55
+08005cc8 0000000e T ece2_474_init
+08005cd8 00000070 T polling_routine
+### nm build/Slave
+08006394 0000006c T ece2_474_init
+08006400 00000060 T polling_routine

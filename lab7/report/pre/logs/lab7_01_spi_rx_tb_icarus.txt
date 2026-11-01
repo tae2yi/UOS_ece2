@@ -1,0 +1,11 @@
+t=  7.272 ms  UART line 0: "RX=55\r\n"  LED=55
+t= 17.286 ms  UART line 1: "RX=A5\r\n"  LED=A5
+t= 27.301 ms  UART line 2: "RX=00\r\n"  LED=00
+t= 37.315 ms  UART line 3: "RX=FF\r\n"  LED=FF
+t= 47.330 ms  UART line 4: "RX=55\r\n"  LED=55
+t= 57.345 ms  UART line 5: "RX=A5\r\n"  LED=A5
+t= 67.359 ms  UART line 6: "RX=00\r\n"  LED=00
+t= 77.374 ms  UART line 7: "RX=FF\r\n"  LED=FF
+t= 87.448 ms  UART line 8: "RX=3C\r\n"  LED=3C
+PASS spi_rx tb: 9 bytes from MCU hostsim + partial-byte recovery 0x3C, UART lines and LED match
+sim/tb.sv:105: $finish called at 90210970000 (1ps)

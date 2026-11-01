@@ -1,0 +1,2 @@
+PASS spi_rx view: 0x55, 0xA5 received at 8th rising edge
+sim/tb_view.sv:40: $finish called at 107290000 (1ps)
