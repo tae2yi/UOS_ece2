@@ -12,7 +12,7 @@
 | LAB4 | 10/12 | STM32_0(과제1·2) + FPGA 곱셈기·BCD 변환 | 완료(`570f69c`, 링크 고정 `8c45792`) | **docx·스크립트 미커밋**(아래) |
 | LAB5 | 10/19 | STM32_1(과제3·4) + FPGA 피아노·신호등·ADC | 완료(`a953f24`, 고정 `9129133`) | 완료(`2ca573d`, 참고문헌 수정 `19f7d9b`) |
 | LAB6 | 10/26 | STM32_2(과제5~7) + FPGA 서보·SRAM·DAC | 완료(`cb8ab23`, 고정 `eefd5c7`) | 완료(`95b1fc7`, 고정 `8c8bfad`) |
-| LAB7 | 11/2 | STM32_3(과제8~12, SPI) | 완료(`19a037b`, 고정 `8cdd3cc`) | 작성 완료(영상 4개·오실로스코프 사진, 얼굴 모자이크) → [labs/lab7.md](labs/lab7.md) |
+| LAB7 | 11/2 | STM32_3(과제8~12, SPI) | 완료(`19a037b`, 고정 `8cdd3cc`) | 완료(`2b72075`, 고정은 그다음 커밋) → [labs/lab7.md](labs/lab7.md) |
 
 ## 걸려 있는 일 (우선순위 순)
 
@@ -23,7 +23,7 @@
 3. **LAB4 결과보고서 미커밋** — `lab4/report/final/LAB4_결과보고서.docx`, `build_lab4_final.py`, `qa_render/`가 untracked. 보고서에는 제출 태그 `lab4-final`을 적었지만 태그는 만들지 않았다. 사용자가 이미 제출했는지, 커밋·태그를 원하는지 확인 후 처리.
 4. **10/26 기획 PPT 진행본 2** — `project/planning/`(untracked). 10/19 진행본을 만든 스크립트 `build_planning_ppt.py`를 고쳐 다시 만든다. 빈칸(조 이름·조장·조원·역할)과 피드백 반영 필요. [project/mini-ate.md](project/mini-ate.md)
 5. **LAB6 결과보고서** — 10/26 실험 후. 사용자가 영상을 `lab6/report/final/videos/`에 넣고 요청하면 [workflow/final-report.md](workflow/final-report.md)대로.
-6. **LAB7 결과보고서** — 11/3 작성(7쪽). 커밋 후 링크 해시 고정, master 병합·push는 사용자 요청 시.
+6. **LAB7 결과보고서** — 11/3 완료(7쪽, 링크 `2b72075` 고정). master 병합·push는 사용자 요청 시.
 
 ## 저장소에 커밋되지 않은 것 (2026-10-21 `git status`)
 

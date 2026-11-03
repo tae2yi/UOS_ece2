@@ -16,7 +16,7 @@ from docx.oxml.ns import qn
 from docx.shared import Pt
 
 HERE = Path(__file__).resolve().parent
-CODE_COMMIT = 'master'      # 영상·측정값·LAB7 소스가 모두 들어간 커밋(커밋 후 전체 해시로 바꾼다)
+CODE_COMMIT = '2b72075b237e335f139344296c7f057ead3dddc6'     # 영상·측정값·LAB7 소스가 모두 들어간 커밋
 sys.argv = [sys.argv[0], CODE_COMMIT[:7]]                   # 예비보고서 모듈의 GitHub 주소가 이 커밋을 가리킨다
 sys.path.insert(0, str(HERE.parent / 'pre'))
 import build_lab7_report as B  # noqa: E402
