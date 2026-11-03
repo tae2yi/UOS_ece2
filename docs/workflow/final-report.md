@@ -14,10 +14,11 @@ lab4·lab5에서 한 방식. 가장 최근 예시는 **`lab5/report/final/`** (`
 1. ffmpeg 준비(PC에 없음): 스크래치에 `python -m pip install --target <scratch>/pylib imageio-ffmpeg` → `pylib/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-*.exe`.
 2. **영상 내용을 보고 실험과 짝을 맞춘다**(파일 이름 순서가 사용자가 말한 순서와 다를 수 있음). 프레임 몇 장을 뽑아 확인하고, 다르면 보고 때 표로 알린다.
 3. H.264로 재인코딩하고 이름을 바꾼다: `labN_fpga_0K_<이름>.mp4`, `labN_stm32_0K_task<번호>_<이름>.mp4` (예: `lab5_fpga_02_traffic.mp4`, `lab5_stm32_02_task4_pwm.mp4`).
-4. 원본은 `videos/original/`로 옮긴다(`labN/.gitignore`에 `report/final/videos/original/`).
-5. 썸네일 `videos/thumb/<같은이름>.jpg`.
-6. `videos/README.md`: 제목 "# LAB N 보드 실험 영상", 촬영일·보드·bitstream 위치 설명, 표 `| 실험 | 영상(썸네일 링크 + 파일 링크, 길이) | 입력 조건 | 영상에서 확인한 동작 |`, 아래에 측정 방법 주석. lab5 README를 그대로 본뜬다.
-7. 루트 `README.md`에 `- [Lab N 실험 영상](labN/report/final/videos/README.md)` 추가.
+4. 얼굴(사람, 화면에 비친 얼굴 포함)이 나오면 모자이크한다(lab7 `blur_faces.py`: 시각별 상자를 적고 보간, 그 영상에서 사진을 뽑는다).
+5. 원본은 `videos/original/`로 옮긴다(`labN/.gitignore`에 `report/final/videos/original/`).
+6. 썸네일 `videos/thumb/<같은이름>.jpg`.
+7. `videos/README.md`: 제목 "# LAB N 보드 실험 영상", 촬영일·보드·bitstream 위치 설명, 표 `| 실험 | 영상(썸네일 링크 + 파일 링크, 길이) | 입력 조건 | 영상에서 확인한 동작 |`, 아래에 측정 방법 주석. lab5 README를 그대로 본뜬다.
+8. 루트 `README.md`에 `- [Lab N 실험 영상](labN/report/final/videos/README.md)` 추가.
 
 ## 2. 측정값과 그림 (`make_figures.py <ffmpeg 경로>`)
 

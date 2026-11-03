@@ -1,4 +1,4 @@
-# LAB7 (11/2) — STM32_3 SPI (과제8~12) — 예비 작성, 미커밋
+# LAB7 (11/2) — STM32_3 SPI (과제8~12) — 예비·결과 완료
 
 ## 범위 (조교 `c/stm32/docs/STM32_3.md`, 저장소 Glaysia/ece2_26_2_2 커밋 1fab83e)
 - SPI Mode 0, 8비트, MSB first, MISO 미사용. MCU SPI1 SCK = 100 MHz / 128 = 781.25 kHz. FPGA 마스터는 1 MHz 이하.
@@ -19,10 +19,17 @@
 - 캡처: 긴 tb(약 90 ms)는 xsim GUI가 0~700 ms로 열어 파형이 몰림 → `capture_xsim.ps1 -Keys "^0"`(Zoom Fit)로 찍음. wcfg zoom_setting 수정은 효과 없었음.
 
 ## 산출물
-- `lab7/report/pre/LAB7_예비보고서.docx` (11쪽), `qa_render/LAB7_예비보고서.pdf`. 링크는 아직 `master`(커밋 후 해시 고정 필요).
+- `lab7/report/pre/LAB7_예비보고서.docx` (11쪽), `qa_render/LAB7_예비보고서.pdf`. 링크는 커밋 `19a037b`로 고정(`8cdd3cc`).
 
 ## 실험 당일 확인할 것
 1. 받는 쪽에 수신 프로그램/bitstream을 **먼저** 올리고 선 연결(출력끼리 충돌 방지). 과제11 전 MCU를 `-DSTM32_3_ROLE=2`로.
 2. 과제9 역할 교대 때 CS 선을 새 송신 PB6 → 새 수신 PA4로 옮김.
 3. 오실로스코프: MCU SCK 1.28 µs, CS↓→첫 SCK↑ 시간(HAL 처리 시간, 예비에서 미정), FPGA SCK 2 µs·CS 17 µs.
 4. 수신 MCU가 송신 도중 시작하면 값이 밀릴 수 있음(추정) → 수신 리셋 후 다시.
+
+## 결과보고서 (11/3, `lab7/report/final/`)
+- 자료: 오실로스코프 사진 2장(과제8, 사진1 CH1 MOSI·CH2 SCK, 사진2 CH1 CS·CH2 SCK), 장면 사진 3장, 영상 4개(과제9 MCU→MCU, 10 MCU→FPGA, 11 FPGA→MCU, 12 FPGA→FPGA). 원본은 `videos/original/`(gitignore).
+- 측정: SCK 786.2 kHz(+0.6 %), MOSI 391.2 kHz(0x55), CS→첫 SCK 약 3.0 µs, 마지막 SCK→CS 약 3.4 µs, CS LOW 약 15.8 µs(사진 화소, SCK 주기를 자로). 과제10 LED 바뀐 시각 0.20·1.17·2.17 s.
+- 과제12 영상은 **위쪽 보드가 송신**(사용자 확인). 과제9 역할 교대는 **보고서에 쓰지 않음**(사용자 요청).
+- 얼굴: 과제9·11 영상은 노트북 화면에 비친 얼굴이 있어 `blur_faces.py`(시각별 상자, 수동)로 모자이크 후 인코딩. make_figures는 모자이크된 영상에서 사진을 뽑는다.
+- 순서: `blur_faces.py <ffmpeg>` → `make_figures.py <ffmpeg>` → `build_lab7_final.py`.

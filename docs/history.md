@@ -14,3 +14,4 @@
 | 10/21 | 06bc0f94 | LAB6 예비보고서(STM32_2 과제5~7, 서보·SRAM·DAC), 캡처 스크립트 PrintWindow 방식으로 개선, 커밋 `cb8ab23`·`eefd5c7`(push 전). |
 | 10/21 | 54eca142 | 이 `docs/` 인수인계 문서 작성. `docs/reference/environment.md`는 사용자 요청으로 gitignore. |
 | 11/1 | 0edd27af | LAB7 예비보고서(STM32_3 SPI 과제8~12): 조교 저장소 ece2_26_2_2로 변경 확인, MCU 송신·수신 매크로, 호스트 SPI 대역, FPGA SPI 수신·송신 설계와 FPGA–FPGA TB, bitstream 2개, 11쪽 docx. 미커밋. |
+| 11/3 | 0edd27af | LAB7 결과보고서: 오실로스코프 사진 2장(SCK 786.2 kHz, CS→SCK 약 3.0 µs), 과제9~12 영상 4개 H.264·README, 과제9·11 영상과 사진 얼굴 모자이크(`blur_faces.py`), 7쪽 docx. 단순 캡처는 Haiku 서브에이전트에 맡기기로 함. |
